@@ -1,6 +1,10 @@
 var passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy,
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    UserModel = mongoose.model("User"),
+    Profile = mongoose.model("Profile"),
+    Name = mongoose.model("Name"),
+    Email = mongoose.model("Email");
 
 function AuthMixin(config, db) {
     var facebook = new FacebookStrategy({
@@ -8,25 +12,33 @@ function AuthMixin(config, db) {
         clientSecret: config.secret.facebook.clientSecret,
         callbackURL: config.secret.facebook.callbackURL
     }, function(accessToken, refreshToken, profile, done) {
-        var UserModel = mongoose.model("User");
-
-        UserModel.findOne({
-            email: profile.emails[0].value
-        }, function (err, user) {
+        UserModel
+        .findOne({
+            id: profile.id
+        })
+        .populate("profile")
+        .exec(function (err, user) {
             if (err) done(err);
 
-            if (user !== undefined && user !== null) {
+            if (user !== null) {
                 done(null, user);
             } else {
                 UserModel.create({
-                    firstname: profile.name.givenName,
-                    lastname: profile.name.familyName,
-                    email: profile.emails[0].value
+                    id: profile.id
                 }, function (err, user) {
-                    if (err || user === undefined || user === null) done(err);
+                    if (err) done(err);
 
-                    if (user !== undefined && user !== null) {
-                        done(null, user);
+                    if (user !== null) {
+                        Profile.create(profile, function (err, p) {
+                            user.profile = p;
+                            user.save(function (err, u) {
+                                done(null, u);
+                            });
+
+
+                        });
+
+
                     }
                 });
             }

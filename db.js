@@ -21,7 +21,7 @@ process.on('SIGINT', function() {
 });
 
 // BRING IN YOUR SCHEMAS & MODELS // For example
-//require('./../model/team');
+require("./models/init").init();
 
 module.exports = {
   connect: function connect(uri, onConnected) {
@@ -32,7 +32,7 @@ module.exports = {
     mongoose.connection.on('connected', function () {
       console.log('Mongoose default connection open to ' + uri);
 
-      require("./models/init").init();
+
 
       if (lodash.isFunction(onConnected)) {
         onConnected();

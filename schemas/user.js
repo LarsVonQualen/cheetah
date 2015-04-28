@@ -3,9 +3,8 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var schema = new Schema({
-    firstname: String,
-    lastname: String,
-    email: String,
+    id: String,
+    profile: ObjectId,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     lastActiveAt: { type: Date, default: Date.now }

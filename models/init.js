@@ -5,7 +5,10 @@ var Activity = require("./activity"),
     Task = require("./task"),
     TaskEvent = require("./taskEvent"),
     User = require("./user"),
-    UserStory = require("./userStory");
+    UserStory = require("./userStory"),
+    Profile = require("./profile"),
+    Name = require("./name"),
+    Email = require("./email");
 
 exports.init = function () {
     console.log("Start initing models...");
@@ -17,5 +20,8 @@ exports.init = function () {
     TaskEvent();
     User();
     UserStory();
+    Profile();
+    Name();
+    Email();
     console.log("Stop initing models...");
 };
