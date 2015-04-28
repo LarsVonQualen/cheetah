@@ -1,7 +1,7 @@
 var mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    userStorySchema = require("./userStory.js");
+    userStorySchema = require("./userStory");
 
 var schema = new Schema({
     startedAt: Date,

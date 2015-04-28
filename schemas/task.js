@@ -1,7 +1,7 @@
 var mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId,
-    taskEventSchema = require("./taskEvent.js");
+    taskEventSchema = require("./taskEvent");
 
 var schema = new Schema({
     createdAt: Date,
