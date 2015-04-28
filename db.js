@@ -32,6 +32,8 @@ module.exports = {
     mongoose.connection.on('connected', function () {
       console.log('Mongoose default connection open to ' + uri);
 
+      require("./models/init").init();
+
       if (lodash.isFunction(onConnected)) {
         onConnected();
       }

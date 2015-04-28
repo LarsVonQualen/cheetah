@@ -1,4 +1,7 @@
 var mongoose = require("mongoose"),
     schema = require("../schemas/task");
 
-module.exports = mongoose.model("Task", schema);
+module.exports = function () {
+    console.log("Registering 'Task' model...");
+    mongoose.model("Task", schema);
+};

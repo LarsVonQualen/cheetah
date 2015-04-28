@@ -1,4 +1,7 @@
 var mongoose = require("mongoose"),
     schema = require("../schemas/sprintReview");
 
-module.exports = mongoose.model("SprintReview", schema);
+module.exports = function () {
+    console.log("Registering 'SprintReview' model...");
+    mongoose.model("SprintReview", schema);
+};

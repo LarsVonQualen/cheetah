@@ -3,13 +3,12 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var schema = new Schema({
-    username: String,
     firstname: String,
     lastname: String,
     email: String,
-    createdAt: Date,
-    updatedAt: Date,
-    lastActiveAt: Date
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+    lastActiveAt: { type: Date, default: Date.now }
 });
 
 module.exports = schema;
