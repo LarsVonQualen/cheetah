@@ -1,0 +1,32 @@
+{
+  "name": "cheetah",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LarsVonQualen/cheetah.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LarsVonQualen/cheetah/issues"
+  },
+  "homepage": "https://github.com/LarsVonQualen/cheetah",
+  "dependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-debug": "^2.0.1",
+    "gulp-inject": "^1.3.1",
+    "gulp-less-sourcemap": "^1.4.2",
+    "gulp-rimraf": "^0.1.1",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-tslint": "^3.1.0-beta",
+    "gulp-typescript": "^2.7.8",
+    "wiredep": "^3.0.0-beta"
+  }
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html ng-app="cheetah">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cheetah &middot; The agile tool!</title>
+    <!-- bower:css -->
+    <!-- endbower -->
+
+    <link rel="stylesheet" type="text/css" href="/css/app.css" />
+
+    <!-- bower:js -->
+    <script src="vendor/jquery.js"></script>
+    
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/angular-ui-router.js"></script>
+    <script src="vendor/lodash.js"></script>
+    <script src="vendor/angular-animate.js"></script>
+    <script src="vendor/ui-bootstrap-tpls.js"></script>
+    <script src="vendor/angular-resource.js"></script>
+    <script src="vendor/angular-local-storage.js"></script>
+    <!-- endbower -->
+    <!-- inject:js -->
+    <script src="app/app.config.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/app.routes.js"></script>
+    <script src="app/framework/ApiEndpoint.js"></script>
+    <script src="app/framework/IApiEndpoint.js"></script>
+    <script src="app/framework/IHasPrimaryKey.js"></script>
+    <script src="app/framework/LocalStorageEndPoint.js"></script>
+    <script src="app/services/RepositoryService.js"></script>
+    <script src="app/areas/dashboard/DashboardOverviewController.js"></script>
+    <script src="app/directives/navbar/Navbar.js"></script>
+    <script src="app/directives/tasks/Tasks.js"></script>
+    <script src="app/directives/userstory/Userstory.js"></script>
+    <!-- endinject -->
+  </head>
+  <body>
+    <navbar></navbar>
+
+    <div class="content">
+      <div class="container-fluid" ui-view>      
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container text-muted text-center">
+        <small>Copyright &copy; geekz.dk 2015</small>
+      </div>
+    </div>
+  </body>
+</html>

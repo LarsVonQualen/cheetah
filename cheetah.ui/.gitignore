@@ -1,0 +1,9 @@
+css/*.css
+css/*.map
+css/*.css.map
+app/**/*.js
+app/**/*.js.map
+js/**/*.js
+js/**/*.js.map
+vendor/*.*
+!vendor/.gitkeep

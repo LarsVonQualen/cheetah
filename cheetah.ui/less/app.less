@@ -1,0 +1,23 @@
+@import "bootstrap";
+@import "flexgrid";
+
+body {
+
+}
+
+.panel-minimal {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border: 0;
+}
+
+.panel-flex {
+  &:extend(.flex-cell);
+
+  padding-right: 0;
+  margin-right: @grid-gutter-width;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}

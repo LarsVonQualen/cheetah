@@ -1,0 +1,46 @@
+{
+    "version": "1.5.0-beta",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "isolatedModules": false,
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "sourceMap": true
+    },
+    "filesGlob": [
+        "../typings/**/*.d.ts",
+        "./**/*.ts",
+        "./**/*.tsx",
+        "!./node_modules/**/*"
+    ],
+    "files": [
+        "../typings/angular-local-storage/angular-local-storage.d.ts",
+        "../typings/angular-ui-bootstrap/angular-ui-bootstrap.d.ts",
+        "../typings/angular-ui-router/angular-ui-router.d.ts",
+        "../typings/angularjs/angular-resource.d.ts",
+        "../typings/angularjs/angular.d.ts",
+        "../typings/jquery/jquery.d.ts",
+        "../typings/lodash/lodash.d.ts",
+        "../typings/tsd.d.ts",
+        "./app.config.ts",
+        "./app.routes.ts",
+        "./app.ts",
+        "./areas/dashboard/DashboardOverviewController.ts",
+        "./directives/navbar/Navbar.ts",
+        "./directives/tasks/Tasks.ts",
+        "./directives/userstory/Userstory.ts",
+        "./framework/ApiEndpoint.ts",
+        "./framework/IApiEndpoint.ts",
+        "./framework/IHasPrimaryKey.ts",
+        "./framework/LocalStorageEndPoint.ts",
+        "./services/RepositoryService.ts"
+    ]
+}
