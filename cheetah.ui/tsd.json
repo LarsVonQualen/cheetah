@@ -25,6 +25,9 @@
     },
     "angular-local-storage/angular-local-storage.d.ts": {
       "commit": "ab3cc82066805007cbf0db233ddb5879f42be4d2"
+    },
+    "angularjs/angular-animate.d.ts": {
+      "commit": "2fe8a6fda29c3340a5e5672b1809a84c88729a30"
     }
   }
 }

@@ -1,16 +1,18 @@
 module Cheetah.Framework {
   export class LocalStorageEndPoint<TResourceType> implements IApiEndpoint<TResourceType> {
     protected localStorage: angular.local.storage.ILocalStorageService;
+    protected $q;
 
     constructor(public $injector: angular.auto.IInjectorService, public resourceName: string, public baseApiUrl?: string, actions?: any, options?: angular.resource.IResourceOptions) {
-      this.localStorage = $injector.get("LocalStorageService");
+      this.localStorage = $injector.get("localStorageService");
+      this.$q = this.$injector.get("$q");
     }
 
-    get<TPrimaryKey>(primaryKey: TPrimaryKey): angular.IPromise<TResourceType> {
-      const d: angular.IDeferred<TResourceType> = this.$injector.get("$q");
+    public get<TPrimaryKey>(primaryKey: TPrimaryKey): angular.IPromise<TResourceType> {
+      const d: angular.IDeferred<TResourceType> = this.$q.defer();
 
-      var collection = this.getCollectionAs<Array<IHasPrimaryKey<TPrimaryKey>>>();
-      var item = _.findWhere(collection, (val: IHasPrimaryKey<TPrimaryKey>) => val.getPrimaryKey() === primaryKey);
+      var collection = this.getCollectionAs<Array<TResourceType>>();
+      var item = _.findWhere(collection, (val: any) => val.Id === primaryKey);
 
       if (item !== undefined && item !== null) {
         d.resolve(item);
@@ -20,8 +22,9 @@ module Cheetah.Framework {
 
       return d.promise;
     }
-    all(): angular.IPromise<Array<TResourceType>> {
-      const d: angular.IDeferred<Array<TResourceType>> = this.$injector.get("$q");
+
+    public all(): angular.IPromise<Array<TResourceType>> {
+      const d: angular.IDeferred<Array<TResourceType>> = this.$q.defer();
 
       var collection = this.getCollection();
 
@@ -29,10 +32,18 @@ module Cheetah.Framework {
 
       return d.promise;
     }
-    save(resource: TResourceType): angular.IPromise<TResourceType> {
-      const d: angular.IDeferred<TResourceType> = this.$injector.get("$q");
+
+    public save(resource: TResourceType): angular.IPromise<TResourceType> {
+      const d: angular.IDeferred<TResourceType> = this.$q.defer();
 
       var collection = this.getCollection();
+
+      var resourceId = (<any>resource).Id;
+
+      if (resourceId === undefined || resourceId === null || resourceId === 0) {
+        (<any>resource).Id = Math.random().toString(36).substring(7);
+      }
+
       collection.push(resource);
       this.saveCollection(collection);
 
@@ -40,7 +51,8 @@ module Cheetah.Framework {
 
       return d.promise;
     }
-    delete(resource: TResourceType): angular.IPromise<TResourceType> {
+
+    public delete(resource: TResourceType): angular.IPromise<TResourceType> {
       return null;
     }
 
@@ -49,7 +61,9 @@ module Cheetah.Framework {
     }
 
     private getCollection(): Array<TResourceType> {
-      return this.localStorage.get<Array<TResourceType>>(this.resourceName);
+      var collection = this.localStorage.get<Array<TResourceType>>(this.resourceName);
+
+      return collection !== undefined && collection !== null ? collection : [];
     }
 
     private getCollectionAs<TCollectionType>() {

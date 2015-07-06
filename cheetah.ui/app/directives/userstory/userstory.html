@@ -1,8 +1,10 @@
 <div class="panel panel-default panel-minimal">
   <div class="panel-heading">
-    <span class="badge">EPIC-1234</span> Some user story
+    <h2 class="panel-title">Some user story <a href=""><i class="fa pull-right"
+                                                          ng-class="{'fa-minus-circle': userstroyCtrl.showTasks, 'fa-plus-circle': !userstroyCtrl.showTasks}" 
+                                                          ng-click="userstoryCtrl.toggleTasks()"></i></a></h2>
   </div>
-  <div class="panel-body">
+  <div class="panel-body cheetah-slide" ng-if="userstoryCtrl.showTasks">
     <ng-transclude></ng-transclude>
   </div>
 </div>

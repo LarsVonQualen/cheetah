@@ -5,7 +5,7 @@
     <title>Cheetah &middot; The agile tool!</title>
     <!-- bower:css -->
     <!-- endbower -->
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/app.css" />
 
     <!-- bower:js -->
@@ -20,15 +20,20 @@
     <script src="vendor/angular-local-storage.js"></script>
     <!-- endbower -->
     <!-- inject:js -->
-    <script src="app/app.config.js"></script>
     <script src="app/app.js"></script>
-    <script src="app/app.routes.js"></script>
+    <script src="app/animations/cheetahSlide.js"></script>
+    <script src="app/config/app.bootstrap.js"></script>
+    <script src="app/config/app.config.js"></script>
+    <script src="app/config/app.routes.js"></script>
     <script src="app/framework/ApiEndpoint.js"></script>
     <script src="app/framework/IApiEndpoint.js"></script>
-    <script src="app/framework/IHasPrimaryKey.js"></script>
     <script src="app/framework/LocalStorageEndPoint.js"></script>
+    <script src="app/models/BaseModel.js"></script>
+    <script src="app/models/BaseModelWithStringKey.js"></script>
+    <script src="app/models/Project.js"></script>
     <script src="app/services/RepositoryService.js"></script>
     <script src="app/areas/dashboard/DashboardOverviewController.js"></script>
+    <script src="app/areas/projects/ProjectsOverviewController.js"></script>
     <script src="app/directives/navbar/Navbar.js"></script>
     <script src="app/directives/tasks/Tasks.js"></script>
     <script src="app/directives/userstory/Userstory.js"></script>
@@ -38,7 +43,7 @@
     <navbar></navbar>
 
     <div class="content">
-      <div class="container-fluid" ui-view>      
+      <div class="container-fluid" ui-view>
       </div>
     </div>
 

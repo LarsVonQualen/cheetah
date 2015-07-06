@@ -5,6 +5,7 @@ module Cheetah {
 
       this.registerDashboardArea();
       this.registerProjectArea();
+      this.registerProjectsArea();
     }
 
     private defaultState(state: string) {
@@ -20,10 +21,19 @@ module Cheetah {
       });
     }
 
+    private registerProjectsArea() {
+      this.$stateProvider.state("projectsOverview", {
+        url: "/projects",
+        templateUrl: "app/areas/projects/ProjectsOverview.html",
+        controller: "ProjectsOverviewController",
+        controllerAs: "projectsCtrl"
+      });
+    }
+
     private registerProjectArea() {
       this.$stateProvider.state("projectScrumboard", {
         url: "/project/:projectId/scrumboard",
-        templateUrl: "app/areas/project/scrumboard.html"
+        templateUrl: "app/areas/project/Scrumboard.html"
       });
     }
   };

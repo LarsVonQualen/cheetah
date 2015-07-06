@@ -6,3 +6,4 @@
 /// <reference path="lodash/lodash.d.ts" />
 /// <reference path="angularjs/angular-resource.d.ts" />
 /// <reference path="angular-local-storage/angular-local-storage.d.ts" />
+/// <reference path="angularjs/angular-animate.d.ts" />

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-lg-4" ng-repeat="project in projectsCtrl.projects">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{project.name}}</h3>
+      </div>
+      <div class="panel-body">
+        <p>{{project.description}}
+      </div>
+      <div class="panel-footer">
+        <small class="text-muted">Created at {{project.createdAt | date:'mediumDate'}} by {{project.createdBy}}</small>
+        <a ui-sref="projectScrumboard({projectId: project.Id})" class="pull-right"><small>Go to board <i class="fa fa-arrow-right"></i></small></a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,12 +13,17 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li>
-          <a href="#">Dashboard</a>
+        <li ui-sref-active="active">
+          <a ui-sref="dashboard">Dashboard</a>
         </li>
-        <li>
-          <a href="#">Projects</a>
+        <li ui-sref-active="active">
+          <a ui-sref="projectsOverview">Projects</a>
         </li>
+        <li ui-sref-active="active" dropdown>
+          <a href="" class="dropdown-toggle" dropdown-toggle>Boards <i class="fa fa-caret-down"></i></a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="project in navbarCtrl.projects"><a ui-sref="projectScrumboard({projectId: project.Id})">{{project.name}}</a></li>
+          </ul>
       </ul>
     </div>
   </div>

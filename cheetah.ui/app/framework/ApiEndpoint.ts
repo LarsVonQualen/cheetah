@@ -1,13 +1,15 @@
 module Cheetah.Framework {
   export class ApiEndpoint<TResourceType> implements IApiEndpoint<TResourceType> {
-    protected resource: angular.resource.IResourceClass<angular.resource.IResource<TResourceType>>
+    protected resource: angular.resource.IResourceClass<angular.resource.IResource<TResourceType>>;
+    protected $q;
 
     constructor(public $injector: angular.auto.IInjectorService, public resourceName: string, public baseApiUrl?: string, actions?: any, options?: angular.resource.IResourceOptions) {
       this.resource = $injector.get("$resource")(`${baseApiUrl}/${resourceName}/:resourceId`, { resourceId: "@Id" }, actions, options);
+      this.$q = this.$injector.get("$q");
     }
 
     public get<TPrimaryKey>(primaryKey: TPrimaryKey): angular.IPromise<TResourceType> {
-      const d: angular.IDeferred<TResourceType> = this.$injector.get("$q");
+      const d: angular.IDeferred<TResourceType> = this.$q.defer();
 
       this.resource.get({ resourceId: primaryKey }, d.resolve, d.reject);
 
@@ -15,7 +17,7 @@ module Cheetah.Framework {
     }
 
     public all(): angular.IPromise<Array<TResourceType>> {
-      const d: angular.IDeferred<Array<TResourceType>> = this.$injector.get("$q");
+      const d: angular.IDeferred<Array<TResourceType>> = this.$q.defer();
 
       this.resource.query({}, d.resolve, d.reject);
 
@@ -23,7 +25,7 @@ module Cheetah.Framework {
     }
 
     public save(resource: TResourceType): angular.IPromise<TResourceType> {
-      const d: angular.IDeferred<TResourceType> = this.$injector.get("$q");
+      const d: angular.IDeferred<TResourceType> = this.$q.defer();
 
       this.resource.save(resource, d.resolve, d.reject);
 
@@ -31,7 +33,7 @@ module Cheetah.Framework {
     }
 
     public delete(resource: TResourceType): angular.IPromise<TResourceType> {
-      const d: angular.IDeferred<TResourceType> = this.$injector.get("$q");
+      const d: angular.IDeferred<TResourceType> = this.$q.defer();
 
       this.resource.delete(resource, d.resolve, d.reject);
 

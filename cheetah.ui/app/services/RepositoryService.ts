@@ -1,25 +1,11 @@
 module Cheetah.Services {
-  class RepositoryService<TResource> {
-    public static $inject = [];
+  export class RepositoryService {
+    public static $inject = ["$injector"];
 
-    constructor() {
+    public projects: Framework.LocalStorageEndPoint<Models.Project>;
 
-    }
-
-    public get<TPrimaryKey>(primaryKey: TPrimaryKey): angular.IPromise<TResource> {
-      return null;
-    }
-
-    public all(): angular.IPromise<Array<TResource>> {
-      return null;
-    }
-
-    public save(resource: TResource): angular.IPromise<TResource> {
-      return null;
-    }
-
-    public delete(resource: TResource): angular.IPromise<TResource> {
-      return null;
+    constructor(protected $injector: angular.auto.IInjectorService) {
+      this.projects = new Framework.LocalStorageEndPoint<Models.Project>($injector, "project");
     }
   }
 
