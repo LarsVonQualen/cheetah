@@ -1,6 +1,6 @@
 module Cheetah.Directives.Userstory {
   class UserstoryController {
-    public showTasks: boolean = true;
+    public showTasks: boolean = false;
 
     constructor() {
 
@@ -13,6 +13,7 @@ module Cheetah.Directives.Userstory {
 
   angular.module("cheetah.directives").directive("userstory", () => {
     return {
+      scope: {},
       templateUrl: "app/directives/userstory/userstory.html",
       transclude: true,
       replace: true,
