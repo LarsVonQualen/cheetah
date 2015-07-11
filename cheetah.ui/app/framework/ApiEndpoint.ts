@@ -1,11 +1,15 @@
 module Cheetah.Framework {
   export class ApiEndpoint<TResourceType> implements IApiEndpoint<TResourceType> {
     protected resource: angular.resource.IResourceClass<angular.resource.IResource<TResourceType>>;
-    protected $q;
 
-    constructor(public $injector: angular.auto.IInjectorService, public resourceName: string, public baseApiUrl?: string, actions?: any, options?: angular.resource.IResourceOptions) {
-      this.resource = $injector.get("$resource")(`${baseApiUrl}/${resourceName}/:resourceId`, { resourceId: "@Id" }, actions, options);
-      this.$q = this.$injector.get("$q");
+    constructor(
+      protected $q: angular.IQService,
+      protected $resource: angular.resource.IResourceService,
+      public resourceName: string,
+      public baseApiUrl?: string,
+      actions?: any,
+      options?: angular.resource.IResourceOptions) {
+      this.resource = $resource(`${baseApiUrl}/${resourceName}/:resourceId`, { resourceId: "@Id" }, actions, options);
     }
 
     public get<TPrimaryKey>(primaryKey: TPrimaryKey): angular.IPromise<TResourceType> {

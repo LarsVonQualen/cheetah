@@ -1,11 +1,11 @@
 module Cheetah.Framework {
   export class LocalStorageEndPoint<TResourceType> implements IApiEndpoint<TResourceType> {
-    protected localStorage: angular.local.storage.ILocalStorageService;
-    protected $q;
+    constructor(
+      public $q: angular.IQService,
+      public localStorageService: angular.local.storage.ILocalStorageService,
+      public resourceName: string,
+      public baseApiUrl?: string) {
 
-    constructor(public $injector: angular.auto.IInjectorService, public resourceName: string, public baseApiUrl?: string, actions?: any, options?: angular.resource.IResourceOptions) {
-      this.localStorage = $injector.get("localStorageService");
-      this.$q = this.$injector.get("$q");
     }
 
     public get<TPrimaryKey>(primaryKey: TPrimaryKey): angular.IPromise<TResourceType> {
@@ -57,17 +57,17 @@ module Cheetah.Framework {
     }
 
     private saveCollection(collection: Array<TResourceType>) {
-      this.localStorage.set(this.resourceName, collection);
+      this.localStorageService.set(this.resourceName, collection);
     }
 
     private getCollection(): Array<TResourceType> {
-      var collection = this.localStorage.get<Array<TResourceType>>(this.resourceName);
+      var collection = this.localStorageService.get<Array<TResourceType>>(this.resourceName);
 
       return collection !== undefined && collection !== null ? collection : [];
     }
 
     private getCollectionAs<TCollectionType>() {
-      return this.localStorage.get<TCollectionType>(this.resourceName);
+      return this.localStorageService.get<TCollectionType>(this.resourceName);
     }
   }
 }

@@ -1,6 +1,5 @@
 module Cheetah.Framework {
   export interface IApiEndpoint<TResourceType> {
-    $injector: angular.auto.IInjectorService;
     resourceName: string;
     baseApiUrl: string;
 
