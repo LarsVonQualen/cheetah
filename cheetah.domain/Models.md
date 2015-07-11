@@ -27,13 +27,13 @@
 - name: string
 - description: string
 - meta: Metadata
-- roles: List<Role>
+- roles: List Role
 
 ### Role
 - name: string
 - description: string
 - meta: Metadata
-- permisions: List<Permission>
+- permisions: List Permission
 
 ### User
 - firstname: string
@@ -44,20 +44,20 @@
 - email: string
 - description: string
 - meta: Metadata
-- teams: List<Team>
-- roles: List<Role>
+- teams: List Team
+- roles: List Role
 
 ### Team
 - name: string
 - description: string
 - meta: Metadata
 - organization: Organization
-- users: List<User>
+- users: List User
 
 ### Project
 - name: string
 - description: string
 - meta: Metadata
 - organization: Organization
-- teams: List<Team>
-- users: List<User>
+- teams: List Team
+- users: List User
