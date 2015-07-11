@@ -9,3 +9,7 @@
 Virksomhed -> Organisationer -> Projekter
 
 Brugere er ejet af Virksomheden, men tilknyttet organisationer og derefter projekter, organisations tilknytningen kan ske implicit ved tilknyttelse af projekter.
+
+### Random
+- Der skal være fast definerede roller
+  - Men også muligt for brugerdefinerede roller, defineret ud fra standard permissions
