@@ -1,8 +1,8 @@
 ### Metadata
-- createdAt: Date
-- createdBy: User
-- lastUpdatedAt: Date
-- lastUpdatedBy: User
+- createdAt: Date?
+- createdBy: User?
+- lastUpdatedAt: Date?
+- lastUpdatedBy: User?
 
 ### Address
 - street: string
@@ -57,7 +57,28 @@
 ### Project
 - name: string
 - description: string
+- label: string
 - meta: Metadata
 - organization: Organization
 - teams: List Team
 - users: List User
+
+# Feature
+- label: string
+- name: string
+- description: string
+- meta: Metadata
+- userstory: List Userstory
+
+### Sprint
+- name: string
+- goal: string
+- meta: Metadata
+
+# Userstory
+- identiy: integer
+- story: string
+- risks: string
+- acceptCriterias: string
+- feature: List Feature
+- meta: Metadata
