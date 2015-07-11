@@ -44,9 +44,24 @@
         "./framework/ApiEndpoint.ts",
         "./framework/IApiEndpoint.ts",
         "./framework/LocalStorageEndPoint.ts",
+        "./models/Address.ts",
         "./models/BaseModel.ts",
+        "./models/BaseModelWithNumberKey.ts",
         "./models/BaseModelWithStringKey.ts",
+        "./models/Corporation.ts",
+        "./models/Feature.ts",
+        "./models/Metadata.ts",
+        "./models/Organization.ts",
+        "./models/Permission.ts",
         "./models/Project.ts",
-        "./services/RepositoryService.ts"
+        "./models/Role.ts",
+        "./models/Sprint.ts",
+        "./models/SprintRetrospectiveItem.ts",
+        "./models/Tasks.ts",
+        "./models/Team.ts",
+        "./models/User.ts",
+        "./models/Userstory.ts",
+        "./services/RepositoryService.ts",
+        "./services/UserService.ts"
     ]
 }

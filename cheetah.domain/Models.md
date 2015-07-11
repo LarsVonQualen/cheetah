@@ -68,12 +68,13 @@
 - name: string
 - description: string
 - meta: Metadata
-- userstory: List Userstory
+- userstories: List Userstory
 
 ### Sprint
 - name: string
 - goal: string
 - meta: Metadata
+- userstories: List Userstory
 
 ### Userstory
 - identiy: integer
@@ -84,7 +85,7 @@
 - meta: Metadata
 - dependencies: List Userstory
 
-### Tasks
+### Task
 - identiy: integer
 - summary: string
 - description: string
@@ -93,3 +94,20 @@
 - userstory: Userstory
 - meta: Metadata
 - dependencies: List Task
+
+### Sprint Retrospective Item
+- description: string
+- meta: Metadata
+
+### Sprint Retrospective
+- headline: string
+- keepDoing: List Sprint Retrospective Item
+- stopDoing: List Sprint Retrospective Item
+- startDoing: List Sprint Retrospective Item
+- meta: Metadata
+- sprint: Sprint
+
+### Sprint Review
+- review: string
+- meta: Metadata
+- sprint: Sprint
