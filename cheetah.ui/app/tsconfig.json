@@ -34,6 +34,7 @@
         "./animations/cheetahSlide.ts",
         "./app.ts",
         "./areas/dashboard/DashboardOverviewController.ts",
+        "./areas/login/LoginController.ts",
         "./areas/projects/ProjectsOverviewController.ts",
         "./config/app.bootstrap.ts",
         "./config/app.config.ts",
