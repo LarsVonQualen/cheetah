@@ -63,7 +63,7 @@
 - teams: List Team
 - users: List User
 
-# Feature
+### Feature
 - label: string
 - name: string
 - description: string
@@ -75,7 +75,7 @@
 - goal: string
 - meta: Metadata
 
-# Userstory
+### Userstory
 - identiy: integer
 - story: string
 - risks: string
