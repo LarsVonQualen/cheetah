@@ -82,3 +82,14 @@
 - acceptCriterias: string
 - feature: List Feature
 - meta: Metadata
+- dependencies: List Userstory
+
+### Tasks
+- identiy: integer
+- summary: string
+- description: string
+- estimate: number
+- remaining: number
+- userstory: Userstory
+- meta: Metadata
+- dependencies: List Task
