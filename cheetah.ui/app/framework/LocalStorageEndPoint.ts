@@ -9,51 +9,52 @@ module Cheetah.Framework {
     }
 
     public get<TPrimaryKey>(primaryKey: TPrimaryKey): angular.IPromise<TResourceType> {
-      const d: angular.IDeferred<TResourceType> = this.$q.defer();
-
-      var collection = this.getCollectionAs<Array<TResourceType>>();
-      var item = _.findWhere(collection, (val: any) => val.Id === primaryKey);
-
-      if (item !== undefined && item !== null) {
-        d.resolve(item);
-      } else {
-        d.reject();
-      }
-
-      return d.promise;
+      return this.findWhere((val: any) => val.Id === primaryKey);
     }
 
     public all(): angular.IPromise<Array<TResourceType>> {
-      const d: angular.IDeferred<Array<TResourceType>> = this.$q.defer();
+      return new this.$q<Array<TResourceType>>((resolve, reject) => {
+        var collection = this.getCollection();
 
-      var collection = this.getCollection();
-
-      d.resolve(collection);
-
-      return d.promise;
+        resolve(collection);
+      });
     }
 
     public save(resource: TResourceType): angular.IPromise<TResourceType> {
-      const d: angular.IDeferred<TResourceType> = this.$q.defer();
+      return new this.$q<TResourceType>((resolve, reject) => {
+        var collection = this.getCollection();
 
-      var collection = this.getCollection();
+        var resourceId = (<any>resource).Id;
 
-      var resourceId = (<any>resource).Id;
+        if (resourceId === undefined || resourceId === null || resourceId === 0) {
+          (<any>resource).Id = Math.random().toString(36).substring(7);
+        }
 
-      if (resourceId === undefined || resourceId === null || resourceId === 0) {
-        (<any>resource).Id = Math.random().toString(36).substring(7);
-      }
+        collection.push(resource);
+        this.saveCollection(collection);
 
-      collection.push(resource);
-      this.saveCollection(collection);
-
-      d.resolve(resource);
-
-      return d.promise;
+        resolve(resource);
+      });
     }
 
-    public delete(resource: TResourceType): angular.IPromise<TResourceType> {
-      return null;
+    public delete(resource: TResourceType): angular.IPromise<boolean> {
+      return new this.$q<boolean>((resolve, reject) => {
+        resolve(true);
+      });
+    }
+
+    public findWhere(predicate: (resource: TResourceType) => boolean): angular.IPromise<TResourceType> {
+      return new this.$q<TResourceType>((resolve, reject) => {
+        var collection = this.getCollection();
+
+        var item = _.findWhere(collection, predicate);
+
+        if (item !== undefined && item !== null) {
+          resolve(item);
+        } else {
+          reject();
+        }
+      });
     }
 
     private saveCollection(collection: Array<TResourceType>) {

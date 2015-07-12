@@ -3,6 +3,7 @@ module Cheetah.Models {
     public firstname: string;
     public lastname: string;
     public username: string;
+    public password: string; // TODO: Obviously has to go at some point!
     public location: string;
     public birthday: Date;
     public email: string;
