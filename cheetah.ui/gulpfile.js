@@ -96,6 +96,15 @@ gulp.task('index', ["vendor"], function () {
     .pipe(gulp.dest(config.app.path));
 });
 
+gulp.task("clean-app-js", function (cb) {
+  gulp.src([config.typescript.all.js, config.typescript.all.map])
+    .pipe(debug({title: "clean-app-js"}));
+
+  del(config.typescript.all.js, function () {
+    del(config.typescript.all.map, cb);
+  });
+});
+
 gulp.task("default", ["compile-less", "index"]);
 
 gulp.task("watch", ["default"], function () {

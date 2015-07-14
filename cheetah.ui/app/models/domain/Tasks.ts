@@ -1,5 +1,5 @@
-module Cheetah.Models {
-  export class Task extends BaseModelWithStringKey {
+module Cheetah.Models.Domain {
+  export class Task extends Base.BaseModelWithStringKey {
     public identity: number;
     public summary: string;
     public description: string;

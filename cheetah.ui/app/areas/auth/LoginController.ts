@@ -3,5 +3,5 @@ module Cheetah.Controllers {
     public static $inject = ["UserService"];
   }
 
-  angular.module("cheetah.controllers").controller("LoginController", LoginController);
+  angular.module("cheetah.areas").controller("LoginController", LoginController);
 }

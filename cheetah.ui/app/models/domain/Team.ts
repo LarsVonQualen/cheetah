@@ -1,5 +1,5 @@
-module Cheetah.Models {
-  export class Team extends BaseModelWithStringKey {
+module Cheetah.Models.Domain {
+  export class Team extends Base.BaseModelWithStringKey {
     public name: string;
     public description: string;
     public organization: Organization;

@@ -1,5 +1,5 @@
 module Cheetah.Framework {
-  export interface IApiEndpoint<TResourceType> {
+  export interface IEndpoint<TResourceType> {
     resourceName: string;
     baseApiUrl: string;
 

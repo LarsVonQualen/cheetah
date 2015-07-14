@@ -19,7 +19,8 @@ module.exports = function () {
   this.typescript.path = this.app.path + "app/";
   this.typescript.all = {
     js: this.typescript.path + "**/*.js",
-    ts: this.typescript.path + "**/*.ts"
+    ts: this.typescript.path + "**/*.ts",
+    map: this.typescript.path + "**/*.map"
   };
 
   this.typings = {};

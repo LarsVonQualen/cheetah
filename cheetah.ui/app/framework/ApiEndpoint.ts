@@ -1,5 +1,5 @@
 module Cheetah.Framework {
-  export class ApiEndpoint<TResourceType> implements IApiEndpoint<TResourceType> {
+  export class ApiEndpoint<TResourceType> implements IEndpoint<TResourceType> {
     protected resource: angular.resource.IResourceClass<angular.resource.IResource<TResourceType>>;
 
     constructor(
@@ -36,12 +36,16 @@ module Cheetah.Framework {
       return d.promise;
     }
 
-    public delete(resource: TResourceType): angular.IPromise<TResourceType> {
-      const d: angular.IDeferred<TResourceType> = this.$q.defer();
+    public delete(resource: TResourceType): angular.IPromise<boolean> {
+      const d: angular.IDeferred<boolean> = this.$q.defer();
 
       this.resource.delete(resource, d.resolve, d.reject);
 
       return d.promise;
+    }
+
+    public findWhere(predicate: (resource: TResourceType) => boolean): angular.IPromise<TResourceType> {
+      return null;
     }
   }
 }

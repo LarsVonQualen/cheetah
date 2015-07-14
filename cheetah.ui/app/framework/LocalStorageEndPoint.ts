@@ -1,5 +1,5 @@
 module Cheetah.Framework {
-  export class LocalStorageEndPoint<TResourceType> implements IApiEndpoint<TResourceType> {
+  export class LocalStorageEndPoint<TResourceType> implements IEndpoint<TResourceType> {
     constructor(
       public $q: angular.IQService,
       public localStorageService: angular.local.storage.ILocalStorageService,

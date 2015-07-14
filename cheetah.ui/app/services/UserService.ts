@@ -1,7 +1,18 @@
 module Cheetah.Services {
   export class UserService {
     public static $inject = ["RepositoryService", "$q"];
-    private user: Models.User;
+
+    private user: Models.User = null;
+    private roles = {
+      "anon": {
+        "login": true,
+        "register": true,
+        "forgot-password": true
+      },
+      "user": {
+        "navbar": true
+      }
+    };
 
     constructor(
       private repo: Services.RepositoryService,
@@ -31,6 +42,14 @@ module Cheetah.Services {
 
     public current(): Models.User {
       return this.user !== undefined && this.user !== null ? this.user : null;
+    }
+
+    public canAccessArea(area: string): boolean {
+      if (this.user === null) {
+        return _.has(this.roles, `anon.${area}`);
+      } else {
+        return _.has(this.roles, `user.${area}`);
+      }
     }
   }
 

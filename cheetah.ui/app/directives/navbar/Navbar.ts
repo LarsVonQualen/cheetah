@@ -1,7 +1,7 @@
 module Cheetah.Directives.Navbar {
   class NavbarController {
     public static $inject = ["RepositoryService"];
-    public projects: Array<Models.Project> = [];
+    public projects: Array<Models.Domain.Project> = [];
 
     constructor(RepositoryService: Services.RepositoryService) {
       RepositoryService.projects.all().then(projects => this.projects = projects);

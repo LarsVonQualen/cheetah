@@ -1,5 +1,5 @@
-module Cheetah.Models {
-  export class Userstory extends BaseModelWithStringKey {
+module Cheetah.Models.Domain {
+  export class Userstory extends Base.BaseModelWithStringKey {
     public identiy: number;
     public story: string;
     public risks: string;

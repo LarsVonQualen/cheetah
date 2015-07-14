@@ -2,8 +2,8 @@ module Cheetah.Services {
   export class RepositoryService {
     public static $inject = ["$q", "localStorageService"];
 
-    public projects: Framework.IApiEndpoint<Models.Project>;
-    public users: Framework.IApiEndpoint<Models.User>;
+    public projects: Framework.IEndpoint<Models.Domain.Project>;
+    public users: Framework.IEndpoint<Models.User>;
 
     constructor(
       protected $q: angular.IQService,
@@ -13,7 +13,7 @@ module Cheetah.Services {
     }
 
     private setupProjects() {
-      this.projects = this.factory<Models.Project>("projects");
+      this.projects = this.factory<Models.Domain.Project>("projects");
     }
 
     public setupUsers() {

@@ -1,8 +1,12 @@
 module Cheetah {
   class Router {
-    constructor(private $stateProvider: angular.ui.IStateProvider, private $urlRouterProvider: angular.ui.IUrlRouterProvider) {
+    constructor(
+      private $stateProvider: angular.ui.IStateProvider,
+      private $urlRouterProvider: angular.ui.IUrlRouterProvider
+      ) {
       this.defaultState("/");
 
+      this.registerAuthArea();
       this.registerDashboardArea();
       this.registerProjectArea();
       this.registerProjectsArea();
@@ -10,6 +14,25 @@ module Cheetah {
 
     private defaultState(state: string) {
       this.$urlRouterProvider.otherwise(state);
+    }
+
+    private registerAuthArea() {
+      this.$stateProvider.state("login", {
+        url: "/login",
+        templateUrl: "app/areas/auth/Login.html",
+        controller: "LoginController",
+        controllerAs: "loginCtrl"
+      }).state("register", {
+        url: "/register",
+        templateUrl: "app/areas/auth/Register.html",
+        controller: "RegisterController",
+        controllerAs: "registerCtrl"
+      }).state("forgot-password", {
+        url: "/forgot-password",
+        templateUrl: "app/areas/auth/ForgotPassword.html",
+        controller: "ForgotPasswordController",
+        controllerAs: "forgotPasswordCtrl"
+      });
     }
 
     private registerDashboardArea() {
