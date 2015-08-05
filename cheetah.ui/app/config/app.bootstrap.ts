@@ -46,7 +46,7 @@ module Cheetah {
       if (!this.userService.canAccessArea(toState.name)) {
         event.preventDefault();
 
-        this.$state.go("login");
+        this.$state.go("signin");
       }
     }
   }

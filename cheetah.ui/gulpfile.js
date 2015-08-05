@@ -14,6 +14,7 @@ var config = new GulpConfig();
 
 gulp.task("compile-less", function () {
   gulp.src(config.less.main)
+    .pipe(debug({ title: "less" }))
     .pipe(less())
     .pipe(gulp.dest(config.css.path));
 });

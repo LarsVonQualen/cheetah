@@ -17,16 +17,16 @@ module Cheetah {
     }
 
     private registerAuthArea() {
-      this.$stateProvider.state("login", {
-        url: "/login",
-        templateUrl: "app/areas/auth/Login.html",
-        controller: "LoginController",
-        controllerAs: "loginCtrl"
-      }).state("register", {
-        url: "/register",
-        templateUrl: "app/areas/auth/Register.html",
-        controller: "RegisterController",
-        controllerAs: "registerCtrl"
+      this.$stateProvider.state("signin", {
+        url: "/signin",
+        templateUrl: "app/areas/auth/SignIn.html",
+        controller: "SignInController",
+        controllerAs: "signInCtrl"
+      }).state("signup", {
+        url: "/signup",
+        templateUrl: "app/areas/auth/SignUp.html",
+        controller: "SignUpController",
+        controllerAs: "signUpCtrl"
       }).state("forgot-password", {
         url: "/forgot-password",
         templateUrl: "app/areas/auth/ForgotPassword.html",

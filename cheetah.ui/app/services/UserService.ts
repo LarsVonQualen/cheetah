@@ -5,9 +5,13 @@ module Cheetah.Services {
     private user: Models.User = null;
     private roles = {
       "anon": {
-        "login": true,
-        "register": true,
-        "forgot-password": true
+        "signin": true,
+        "signup": true,
+        "forgot-password": true,
+        "projectsOverview": true,
+        //"navbar": false,
+        "projectScrumboard": true,
+        "dashboard": true
       },
       "user": {
         "navbar": true
@@ -45,11 +49,19 @@ module Cheetah.Services {
     }
 
     public canAccessArea(area: string): boolean {
+      var areaString: string;
+
       if (this.user === null) {
-        return _.has(this.roles, `anon.${area}`);
+        areaString = `anon.${area}`;
       } else {
-        return _.has(this.roles, `user.${area}`);
+        areaString = `user.${area}`;
       }
+
+      var canAccess = _.has(this.roles, areaString);
+
+      console.log(areaString, canAccess);
+
+      return canAccess;
     }
   }
 
