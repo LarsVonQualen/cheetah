@@ -14,7 +14,7 @@ module Cheetah.Models.Domain {
       this.name = name;
       this.description = description;
       //this.meta.createdBy = new User();
-      this.meta.createdBy.username = createdBy;
+      //this.meta.createdBy.username = createdBy;
     }
   }
 }

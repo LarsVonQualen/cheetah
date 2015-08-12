@@ -9,7 +9,7 @@ module Cheetah.Services {
         "signup": true,
         "forgot-password": true,
         "projectsOverview": true,
-        //"navbar": false,
+        "navbar": true,
         "projectScrumboard": true,
         "dashboard": true
       },

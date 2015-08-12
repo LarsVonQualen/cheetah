@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     del = require('del'),
     wiredep = require('wiredep'),
-    less = require('gulp-less-sourcemap'),
+    less = require('gulp-less'),
     GulpConfig = require("./config/gulp"),
     debug = require("gulp-debug");
 
@@ -15,7 +15,9 @@ var config = new GulpConfig();
 gulp.task("compile-less", function () {
   gulp.src(config.less.main)
     .pipe(debug({ title: "less" }))
+    .pipe(sourcemaps.init())
     .pipe(less())
+    .pipe(sourcemaps.write("../css"))
     .pipe(gulp.dest(config.css.path));
 });
 
