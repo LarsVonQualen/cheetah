@@ -13,7 +13,7 @@ module Cheetah.Models.Domain {
       this.label = label;
       this.name = name;
       this.description = description;
-      this.meta.createdBy = new User();
+      //this.meta.createdBy = new User();
       this.meta.createdBy.username = createdBy;
     }
   }
