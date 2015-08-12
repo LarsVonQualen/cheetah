@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net45": {
+      "wrappedProject": "../../Cheetah.Database/Cheetah.Database.csproj",
+      "bin": {
+        "assembly": "../../Cheetah.Database/obj/{configuration}/Cheetah.Database.dll",
+        "pdb": "../../Cheetah.Database/obj/{configuration}/Cheetah.Database.pdb"
+      },
+      "dependencies": {
+        "Autofac": "3.5.2",
+        "Ninject": "3.2.2.0",
+        "PetaPoco": "5.0.1"
+      }
+    }
+  }
+}
