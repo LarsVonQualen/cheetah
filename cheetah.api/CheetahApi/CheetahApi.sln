@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cheetah.Database", "Cheetah.Database\Cheetah.Database.csproj", "{42E478A1-A498-4C20-88CB-0B868891ACF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cheetah.DataAccess", "Cheetah.DataAccess\Cheetah.DataAccess.csproj", "{42E478A1-A498-4C20-88CB-0B868891ACF2}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cheetah.Api.Preview", "Cheetah.Api.Preview\Cheetah.Api.Preview.xproj", "{08DDB7D4-8885-4E47-82F2-5F02DEEFE690}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cheetah.WebApi", "Cheetah.WebApi\Cheetah.WebApi.csproj", "{41150E55-D33B-40E0-A224-6D4FDD592DBF}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Cheetah.Database", "Cheetah.Database\Cheetah.Database.sqlproj", "{AE728516-A38C-4585-B50F-1B12D5AF8820}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,16 @@ Global
 		{42E478A1-A498-4C20-88CB-0B868891ACF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E478A1-A498-4C20-88CB-0B868891ACF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E478A1-A498-4C20-88CB-0B868891ACF2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08DDB7D4-8885-4E47-82F2-5F02DEEFE690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08DDB7D4-8885-4E47-82F2-5F02DEEFE690}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08DDB7D4-8885-4E47-82F2-5F02DEEFE690}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08DDB7D4-8885-4E47-82F2-5F02DEEFE690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
