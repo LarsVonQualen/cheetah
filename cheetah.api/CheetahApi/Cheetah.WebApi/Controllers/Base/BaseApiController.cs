@@ -4,21 +4,31 @@ using System.Web.Http;
 
 namespace Cheetah.WebApi.Controllers.Base
 {
-    public abstract class BaseApiController<TKey, TValue, TRepository> : ApiController
+    public abstract class BaseApiController<TKey, TValue> : ApiController
     {
-        public TRepository Repository { get; set; }
-
-        protected BaseApiController(
-            TRepository repository
-            )
+        public virtual TValue Get()
         {
-            Repository = repository;
+            throw new HttpResponseException(System.Net.HttpStatusCode.MethodNotAllowed);
         }
 
-        public abstract TValue Get();
-        public abstract TValue Get(TKey primaryKey);
-        public abstract TValue Post([FromBody] TValue value);
-        public abstract TValue Put([FromBody] TValue value);
-        public abstract void Delete(TKey primaryKey);
+        public virtual TValue Get(TKey primaryKey)
+        {
+            throw new HttpResponseException(System.Net.HttpStatusCode.NotFound);
+        }
+
+        public virtual TValue Post([FromBody] TValue value)
+        {
+            throw new HttpResponseException(System.Net.HttpStatusCode.MethodNotAllowed);
+        }
+
+        public virtual TValue Put([FromBody] TValue value)
+        {
+            throw new HttpResponseException(System.Net.HttpStatusCode.MethodNotAllowed);
+        }
+
+        public virtual void Delete(TKey primaryKey)
+        {
+            throw new HttpResponseException(System.Net.HttpStatusCode.MethodNotAllowed);
+        }
     }
 }

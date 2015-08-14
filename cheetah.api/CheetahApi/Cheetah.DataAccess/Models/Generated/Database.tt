@@ -24,6 +24,8 @@
 	tables["tablename"]["columnname"].PropertyType="bool";		// To change the property type of a column
 */
 
+	Namespace = "Cheetah.DataAccess.Models";
+
 	// Renames
 	tables["Addresses"].ClassName = "Address";
 	tables["Userstories"].ClassName = "Userstory";

@@ -1,10 +1,10 @@
 ﻿using System;
 using Cheetah.DataAccess.Interfaces.Base;
-using CheetahPocoModel;
+using Cheetah.DataAccess.Models;
 
 namespace Cheetah.DataAccess.Interfaces
 {
-    public interface ITaskRepository : IBaseRepository<int, Task, Guid>
+    public interface ITaskRepository : IBaseRepository<int, Task>
     {
 
     }

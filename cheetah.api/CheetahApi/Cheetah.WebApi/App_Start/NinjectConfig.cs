@@ -18,7 +18,7 @@ namespace Cheetah.WebApi
 
         private static void RegisterServices(KernelBase kernel)
         {
-            kernel.Load<Database.RuntimeModule>();
+            kernel.Load<DataAccess.RuntimeModule>();
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Repositories.Base;
-using CheetahPocoModel;
+using Cheetah.DataAccess.Models;
 
 namespace Cheetah.DataAccess.Repositories
 {
-    class TeamRepository : BaseRepository<int, Team, Guid>, ITeamRepository
+    class TeamRepository : BaseRepository<int, Team>, ITeamRepository
     {
          
     }

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cheetah.DataAccess", "Cheet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cheetah.WebApi", "Cheetah.WebApi\Cheetah.WebApi.csproj", "{41150E55-D33B-40E0-A224-6D4FDD592DBF}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Cheetah.Database", "Cheetah.Database\Cheetah.Database.sqlproj", "{AE728516-A38C-4585-B50F-1B12D5AF8820}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +21,6 @@ Global
 		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE728516-A38C-4585-B50F-1B12D5AF8820}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

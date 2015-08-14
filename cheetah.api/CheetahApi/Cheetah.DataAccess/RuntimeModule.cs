@@ -61,6 +61,14 @@ namespace Cheetah.DataAccess
             Bind<ISprintRepository>()
                 .To<SprintRepository>()
                 .InThreadScope();
+
+            Bind<IUserRepository>()
+                .To<UserRepository>()
+                .InThreadScope();
+
+            Bind<IExternalLoginRepository>()
+                .To<ExternalLoginRepository>()
+                .InThreadScope();
         }
     }
 }

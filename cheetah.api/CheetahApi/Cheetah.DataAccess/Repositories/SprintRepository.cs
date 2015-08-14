@@ -1,11 +1,11 @@
 ﻿using System;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Repositories.Base;
-using CheetahPocoModel;
+using Cheetah.DataAccess.Models;
 
 namespace Cheetah.DataAccess.Repositories
 {
-    class SprintRepository : BaseRepository<int, Sprint, Guid>, ISprintRepository
+    class SprintRepository : BaseRepository<int, Sprint>, ISprintRepository
     {
          
     }

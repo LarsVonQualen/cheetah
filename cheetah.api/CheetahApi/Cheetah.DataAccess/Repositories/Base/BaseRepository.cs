@@ -6,13 +6,13 @@ using PetaPoco;
 
 namespace Cheetah.DataAccess.Repositories.Base
 {
-    abstract class BaseRepository<TKey, TValue, TOwner> : IBaseRepository<TKey, TValue, TOwner> where TValue : class, new()
+    abstract class BaseRepository<TKey, TValue> : IBaseRepository<TKey, TValue> where TValue : class, new()
     {        
         public PetaPoco.Database Database { get; set; }
 
         public string PrimaryKey { get; set; }
         public PropertyInfo PrimaryKeyProperty { get; set; }
-        public PropertyInfo OwnerProperty { get; set; }
+        
         public PropertyInfo CreatedAtProperty { get; set; }
         public PropertyInfo LastUpdatedAtProperty { get; set; }
 
@@ -46,11 +46,10 @@ namespace Cheetah.DataAccess.Repositories.Base
             SetPrimaryKeyName(PrimaryKey);
 
             SetLastUpdatedAtPropertyName("LastUpdatedAt");
-            SetCreatedAtPropertyName("CreatedAt");
-            SetOwnerPropertyName("CreatedBy");
+            SetCreatedAtPropertyName("CreatedAt");            
         }
 
-        private PropertyInfo GetPropertyInfo<TPropValue>(string propName)
+        protected PropertyInfo GetPropertyInfo<TPropValue>(string propName)
         {
             return typeof (TPropValue).GetProperty(propName);
         }
@@ -68,11 +67,6 @@ namespace Cheetah.DataAccess.Repositories.Base
         protected void SetCreatedAtPropertyName(string createdAtPropertyName)
         {
             CreatedAtProperty = GetPropertyInfo<TValue>(createdAtPropertyName);
-        }
-
-        protected void SetOwnerPropertyName(string ownerPropertyName)
-        {
-            OwnerProperty = GetPropertyInfo<TValue>(ownerPropertyName);
         }
 
         public virtual TValue Get(TKey primaryKey)
@@ -117,16 +111,7 @@ namespace Cheetah.DataAccess.Repositories.Base
 
                 transaction.Complete();
             }
-        }
-
-        public virtual ICollection<TValue> ListByOwner(TOwner ownerKey)
-        {
-            if (OwnerProperty == null)
-                throw new Exception(
-                    $"The repository '{this.GetType().Name}' does not have access to valid properties for the Owner interface");
-
-            return Database.Fetch<TValue>($"WHERE {OwnerProperty.Name}=@0 {DefaultSortOrder}", ownerKey);
-        }
+        }        
 
         protected virtual void BeforeUpdate(TValue oldValue, TValue newValue)
         {
@@ -159,6 +144,21 @@ namespace Cheetah.DataAccess.Repositories.Base
         protected virtual void AfterDelete(TValue value)
         {
 
+        }
+
+        public virtual async System.Threading.Tasks.Task<TValue> GetAsync(TKey primaryKey)
+        {
+            return await new System.Threading.Tasks.Task<TValue>(() => Get(primaryKey));
+        }
+
+        public virtual async System.Threading.Tasks.Task<TValue> SaveAsync(TValue value)
+        {
+            return await new System.Threading.Tasks.Task<TValue>(() => Save(value));
+        }
+
+        public virtual async System.Threading.Tasks.Task DeleteAsync(TKey primaryKey)
+        {
+            await new System.Threading.Tasks.Task(() => Delete(primaryKey));
         }
     }
 }

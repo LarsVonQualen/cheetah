@@ -37,7 +37,7 @@ using System.Linq;
 using System.Web;
 using PetaPoco;
 
-namespace CheetahPocoModel
+namespace Cheetah.DataAccess.Models
 {
 
 	public partial class CheetahPocoModelDB : Database
@@ -460,6 +460,12 @@ namespace CheetahPocoModel
 
 
 
+
+
+		[Column] public int? SprintId { get; set; }
+
+
+
 	}
 
     
@@ -869,6 +875,78 @@ namespace CheetahPocoModel
 
 
 		[Column] public Guid LastUpdatedBy { get; set; }
+
+
+
+	}
+
+    
+	[TableName("Users")]
+
+
+	[PrimaryKey("UserId", autoIncrement=false)]
+
+	[ExplicitColumns]
+    public partial class User : CheetahPocoModelDB.Record<User>  
+    {
+
+
+
+		[Column] public Guid UserId { get; set; }
+
+
+
+
+
+		[Column] public string UserName { get; set; }
+
+
+
+
+
+		[Column] public string PasswordHash { get; set; }
+
+
+
+
+
+		[Column] public string SecurityStamp { get; set; }
+
+
+
+	}
+
+    
+	[TableName("ExternalLogins")]
+
+
+	[PrimaryKey("ExternalLoginId", autoIncrement=false)]
+
+	[ExplicitColumns]
+    public partial class ExternalLogin : CheetahPocoModelDB.Record<ExternalLogin>  
+    {
+
+
+
+		[Column] public Guid ExternalLoginId { get; set; }
+
+
+
+
+
+		[Column] public Guid UserId { get; set; }
+
+
+
+
+
+		[Column] public string LoginProvider { get; set; }
+
+
+
+
+
+		[Column] public string ProviderKey { get; set; }
 
 
 
