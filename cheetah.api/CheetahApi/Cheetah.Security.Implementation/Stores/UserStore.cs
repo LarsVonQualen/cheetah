@@ -5,7 +5,7 @@ using Cheetah.DataAccess.Models;
 using Cheetah.Security.Interfaces.Stores;
 using Task = System.Threading.Tasks.Task;
 
-namespace Cheetah.Security.Implementation
+namespace Cheetah.Security.Implementation.Stores
 {
     class UserStore : IUserStore<User>
     {

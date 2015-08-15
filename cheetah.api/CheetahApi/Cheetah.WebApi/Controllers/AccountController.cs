@@ -7,7 +7,10 @@ using System.Web;
 using System.Web.Http;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Models;
+using Cheetah.Security.Interfaces.Managers;
+using Cheetah.Security.Interfaces.Models;
 using Cheetah.WebApi.Controllers.Base;
+using Cheetah.WebApi.Models;
 using Microsoft.Owin.Security;
 
 namespace Cheetah.WebApi.Controllers
@@ -15,6 +18,15 @@ namespace Cheetah.WebApi.Controllers
     [RoutePrefix("account")]
     public class AccountController : BaseApiController<Guid, User>
     {
+        private readonly ILocalUserManager<User, AccessToken, RefreshToken> _localUserManager;
+
+        public AccountController(
+            ILocalUserManager<User, AccessToken, RefreshToken> localUserManager
+            )
+        {
+            _localUserManager = localUserManager;
+        }
+
         /// <summary>
         /// Should register the user...
         /// </summary>
@@ -22,9 +34,9 @@ namespace Cheetah.WebApi.Controllers
         /// <returns></returns>
         [Route("register")]
         [HttpPost]
-        public object Register(object user)
+        public async Task<RefreshToken> Register(UserViewModel user)
         {
-            throw new NotImplementedException();
+            return await _localUserManager.CreateAsync(user.Info, user.Password);
         }
 
         /// <summary>
@@ -37,9 +49,9 @@ namespace Cheetah.WebApi.Controllers
         /// <returns></returns>
         [Route("authorize")]
         [HttpPost]
-        public object Authorize(object authRequest)
+        public Task<IAuthorizationGrant> Authorize(ILocalAuthRequest authRequest)
         {
-            throw new NotImplementedException();
+            return _localUserManager.AuthorizeAsync(authRequest);
         }
 
         /// <summary>
@@ -50,9 +62,9 @@ namespace Cheetah.WebApi.Controllers
         /// <returns></returns>
         [Route("refresh")]
         [HttpPost]
-        public object Refresh(object refreshRequest)
+        public Task<AccessToken> Refresh(IRefreshRequest<RefreshToken> refreshRequest)
         {
-            throw new NotImplementedException();
+            return _localUserManager.RefreshAsync(refreshRequest);
         }
 
         /// <summary>
@@ -64,9 +76,9 @@ namespace Cheetah.WebApi.Controllers
         /// <returns></returns>
         [Route("authenticate/{accessToken:string}")]
         [HttpGet]
-        public object Authenticate(string accessToken)
+        public Task<IAuthenticationResponse> Authenticate(string accessToken)
         {
-            throw new NotImplementedException();
+            return _localUserManager.AuthenticateAsync(accessToken);
         }
     }
 }

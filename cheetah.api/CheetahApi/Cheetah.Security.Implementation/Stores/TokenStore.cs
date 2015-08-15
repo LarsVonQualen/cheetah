@@ -4,8 +4,9 @@ using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Models;
 using Cheetah.Security.Interfaces.Models.Base;
 using Cheetah.Security.Interfaces.Stores;
+using Task = System.Threading.Tasks.Task;
 
-namespace Cheetah.Security.Implementation
+namespace Cheetah.Security.Implementation.Stores
 {
     public class TokenStore<TToken, TTokenRepository> : 
         ITokenStore<TToken> 
@@ -36,6 +37,11 @@ namespace Cheetah.Security.Implementation
             return _tokenRepository.Save(token);
         }
 
+        public void Revoke(Guid userId)
+        {
+            _tokenRepository.Delete(userId);
+        }
+
         public Task<TToken> FindAsync(Guid userId)
         {
             return _tokenRepository.GetAsync(userId);
@@ -49,6 +55,11 @@ namespace Cheetah.Security.Implementation
         public Task<TToken> CreateAsync(TToken token)
         {
             return _tokenRepository.SaveAsync(token);
+        }
+
+        public Task RevokeAsync(Guid userId)
+        {
+            return _tokenRepository.DeleteAsync(userId);
         }
     }
 }

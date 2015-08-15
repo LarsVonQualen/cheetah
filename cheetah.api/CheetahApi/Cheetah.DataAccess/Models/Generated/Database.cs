@@ -1036,6 +1036,12 @@ namespace Cheetah.DataAccess.Models
 
 
 
+
+
+		[Column] public Guid ClientId { get; set; }
+
+
+
 	}
 
 

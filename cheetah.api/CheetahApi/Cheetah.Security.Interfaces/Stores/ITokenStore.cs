@@ -9,9 +9,11 @@ namespace Cheetah.Security.Interfaces.Stores
         TToken Find(Guid userId);
         TToken Find(string token);
         TToken Create(TToken token);
+        void Revoke(Guid userId);
 
         Task<TToken> FindAsync(Guid userId);
         Task<TToken> FindAsync(string token);
         Task<TToken> CreateAsync(TToken token);
+        Task RevokeAsync(Guid userId);
     }
 }

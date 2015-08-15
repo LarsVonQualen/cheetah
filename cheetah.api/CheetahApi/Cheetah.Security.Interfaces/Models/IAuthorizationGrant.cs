@@ -1,10 +1,11 @@
-﻿using Cheetah.Security.Interfaces.Models.Base;
+﻿using System;
+using Cheetah.Security.Interfaces.Models.Base;
 
 namespace Cheetah.Security.Interfaces.Models
 {
     public interface IAuthorizationGrant
     {
-        string ClientId { get; set; }
+        Guid ClientId { get; set; }
         IToken RefreshToken { get; set; } 
     }
 }

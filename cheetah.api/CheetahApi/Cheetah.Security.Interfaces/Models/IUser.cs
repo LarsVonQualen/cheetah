@@ -6,5 +6,6 @@ namespace Cheetah.Security.Interfaces.Models
     {
         Guid UserId { get; set; }
         string Username { get; set; }
+        Guid ClientId { get; set; }
     }
 }
