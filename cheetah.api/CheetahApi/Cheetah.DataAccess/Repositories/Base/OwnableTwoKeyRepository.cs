@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
-using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Interfaces.Base;
-using Cheetah.DataAccess.Repositories.Base;
-using Cheetah.DataAccess.Models;
 
-namespace Cheetah.DataAccess.Repositories
+namespace Cheetah.DataAccess.Repositories.Base
 {
-    abstract class OwnableRepository<TKey, TOwner, TValue> : 
-        Repository<TKey, TValue>,
-        IAsyncOwnableRepository<TKey, TOwner, TValue> 
+    abstract class OwnableTwoKeyRepository<TKey, TSecondaryKey, TOwner, TValue> :
+        TwoKeyRepository<TKey, TSecondaryKey, TValue>,        
+        IAsyncOwnableTwoKeyRepository<TKey, TSecondaryKey, TOwner, TValue>
         where TValue : class, new()
     {
-        protected OwnableRepository(string connectionString) : base(connectionString)
+        protected OwnableTwoKeyRepository(string connectionString) : base(connectionString)
         {
             SetOwnerPropertyName("CreatedBy");
         }
 
-        protected OwnableRepository() : this("CheetahPocoModel")
+        protected OwnableTwoKeyRepository() : this("CheetahPocoModel")
         {
-            
+
         }
 
         #region IAsyncOwnableRepository implementation

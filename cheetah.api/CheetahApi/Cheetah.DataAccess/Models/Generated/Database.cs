@@ -881,10 +881,132 @@ namespace Cheetah.DataAccess.Models
 	}
 
     
+	[TableName("AccessTokens")]
+
+
+	[PrimaryKey("Id")]
+
+
+
+	[ExplicitColumns]
+    public partial class AccessToken : CheetahPocoModelDB.Record<AccessToken>  
+    {
+
+
+
+		[Column] public int Id { get; set; }
+
+
+
+
+
+		[Column] public Guid UserId { get; set; }
+
+
+
+
+
+		[Column] public string Token { get; set; }
+
+
+
+
+
+		[Column] public DateTime Expires { get; set; }
+
+
+
+
+
+		[Column] public DateTime CreatedAt { get; set; }
+
+
+
+	}
+
+    
+	[TableName("PasswordHashes")]
+
+
+	[PrimaryKey("Id")]
+
+
+
+	[ExplicitColumns]
+    public partial class PasswordHash : CheetahPocoModelDB.Record<PasswordHash>  
+    {
+
+
+
+		[Column] public int Id { get; set; }
+
+
+
+
+
+		[Column] public Guid UserId { get; set; }
+
+
+
+
+
+		[Column] public string Hash { get; set; }
+
+
+
+
+
+		[Column] public DateTime CreatedAt { get; set; }
+
+
+
+	}
+
+    
+	[TableName("RefreshTokens")]
+
+
+	[PrimaryKey("Id")]
+
+
+
+	[ExplicitColumns]
+    public partial class RefreshToken : CheetahPocoModelDB.Record<RefreshToken>  
+    {
+
+
+
+		[Column] public int Id { get; set; }
+
+
+
+
+
+		[Column] public Guid UserId { get; set; }
+
+
+
+
+
+		[Column] public string Token { get; set; }
+
+
+
+
+
+		[Column] public DateTime CreatedAt { get; set; }
+
+
+
+	}
+
+    
 	[TableName("Users")]
 
 
-	[PrimaryKey("UserId", autoIncrement=false)]
+	[PrimaryKey("Id")]
+
+
 
 	[ExplicitColumns]
     public partial class User : CheetahPocoModelDB.Record<User>  
@@ -892,43 +1014,7 @@ namespace Cheetah.DataAccess.Models
 
 
 
-		[Column] public Guid UserId { get; set; }
-
-
-
-
-
-		[Column] public string UserName { get; set; }
-
-
-
-
-
-		[Column] public string PasswordHash { get; set; }
-
-
-
-
-
-		[Column] public string SecurityStamp { get; set; }
-
-
-
-	}
-
-    
-	[TableName("ExternalLogins")]
-
-
-	[PrimaryKey("ExternalLoginId", autoIncrement=false)]
-
-	[ExplicitColumns]
-    public partial class ExternalLogin : CheetahPocoModelDB.Record<ExternalLogin>  
-    {
-
-
-
-		[Column] public Guid ExternalLoginId { get; set; }
+		[Column] public int Id { get; set; }
 
 
 
@@ -940,13 +1026,13 @@ namespace Cheetah.DataAccess.Models
 
 
 
-		[Column] public string LoginProvider { get; set; }
+		[Column] public string Username { get; set; }
 
 
 
 
 
-		[Column] public string ProviderKey { get; set; }
+		[Column] public DateTime CreatedAt { get; set; }
 
 
 

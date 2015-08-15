@@ -1,37 +1,27 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Cheetah.DataAccess.Interfaces;
-using Cheetah.DataAccess.Repositories.Base;
 using Cheetah.DataAccess.Models;
+using Cheetah.DataAccess.Repositories.Base;
 
 namespace Cheetah.DataAccess.Repositories
 {
-    class UserRepository : BaseRepository<Guid, User>, IUserRepository
+    class UserRepository : 
+        TwoKeyRepository<int, Guid, User>, 
+        IUserRepository
     {
-        public Task<User> GetByNameAsync(string userName)
+        public User Get(string username)
         {
-            return new Task<User>(() => GetByName(userName));
+            var result = Database.SingleOrDefault<User>("WHERE Username=@0", username);
+
+            AfterGet(result);
+
+            return result;
         }
 
-        public User GetByName(string userName)
+        public Task<User> GetAsync(string username)
         {
-            return Database.SingleOrDefault<User>("WHERE UserName=@0", userName);
-        }
-
-        public User GetByExternalLogin(string loginProvider, string providerKey)
-        {
-            var externalLogin = Database.SingleOrDefault<ExternalLogin>("WHERE LoginProvider=@0 AND ProviderKey=@1",
-                loginProvider, providerKey);
-
-            if (externalLogin == null)
-                throw new ArgumentException("Invalid external login.");
-
-            return Database.SingleOrDefault<User>(externalLogin.UserId);
-        }
-
-        public Task<User> GetByExternalLoginAsync(string loginProvider, string providerKey)
-        {
-            return new Task<User>(() => GetByExternalLogin(loginProvider, providerKey));
+            return new Task<User>(() => Get(username));
         }
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Cheetah.DataAccess.Interfaces.Base
 {
-    public interface IOwnableRepository<TKey, TValue, TOwner> : IBaseRepository<TKey, TValue>, IOwner<TValue, TOwner> where TValue : class, new()
+    public interface IOwnableRepository<TKey, in TOwner, TValue> : 
+        IRepository<TKey, TValue>, IOwner<TOwner, TValue> 
+        where TValue : class, new()
     {
         
     }

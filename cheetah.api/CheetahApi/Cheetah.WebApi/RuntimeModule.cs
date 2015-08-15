@@ -1,6 +1,4 @@
 ﻿using Cheetah.DataAccess.Models;
-using Cheetah.WebApi.Identity;
-using Microsoft.AspNet.Identity;
 using Ninject.Modules;
 
 namespace Cheetah.WebApi
@@ -9,9 +7,7 @@ namespace Cheetah.WebApi
     {
         public override void Load()
         {
-            Bind<IPetaPocoUserStore>()
-                .To<PetaPocoUserStore>()
-                .InThreadScope();            
+            
         }
     }
 }

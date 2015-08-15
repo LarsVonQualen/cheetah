@@ -43,14 +43,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -182,8 +174,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Base\BaseApiController.cs" />
     <Compile Include="Controllers\Base\RepoController.cs" />
-    <Compile Include="Identity\IPetaPocoUserStore.cs" />
-    <Compile Include="Identity\PetaPocoUserStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuntimeModule.cs" />
     <Compile Include="Startup.cs" />
@@ -205,6 +195,14 @@
     <ProjectReference Include="..\Cheetah.DataAccess\Cheetah.DataAccess.csproj">
       <Project>{42e478a1-a498-4c20-88cb-0b868891acf2}</Project>
       <Name>Cheetah.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cheetah.Security.Implementation\Cheetah.Security.Implementation.csproj">
+      <Project>{a87c4ae2-1cd2-4004-ba13-2162d6131d55}</Project>
+      <Name>Cheetah.Security.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cheetah.Security.Interfaces\Cheetah.Security.Interfaces.csproj">
+      <Project>{4300f40d-d839-4d62-9d70-0aecd1971400}</Project>
+      <Name>Cheetah.Security.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
