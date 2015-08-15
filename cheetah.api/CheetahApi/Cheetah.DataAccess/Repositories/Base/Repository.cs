@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using Cheetah.DataAccess.Interfaces.Base;
+using Ninject;
 using PetaPoco;
 
 namespace Cheetah.DataAccess.Repositories.Base
 {
-    abstract class Repository<TKey, TValue> : IAsyncRepository<TKey, TValue> where TValue : class, new()
+    abstract class Repository<TKey, TValue> : IRepository<TKey, TValue> where TValue : class, new()
     {
         #region Constructors
 
-        protected Repository(string connectionString)
+        protected Repository()
         {
-            Database = new Database(connectionString);
-
             var primaryKey = typeof(TValue).GetCustomAttribute<PrimaryKeyAttribute>();
             PrimaryKey = primaryKey.Value;
             SetPrimaryKeyName(PrimaryKey);
@@ -23,18 +22,15 @@ namespace Cheetah.DataAccess.Repositories.Base
             SetCreatedAtPropertyName("CreatedAt");
         }
 
-        protected Repository() : this("CheetahPocoModel")
-        {
-
-        }
-
         #endregion
 
         #region IRepository Implementation
 
         #region Properties
 
+        [Inject]
         public Database Database { get; set; }
+
         public string PrimaryKey { get; set; }
         public PropertyInfo PrimaryKeyProperty { get; set; }
         public PropertyInfo CreatedAtProperty { get; set; }
@@ -116,7 +112,9 @@ namespace Cheetah.DataAccess.Repositories.Base
 
                 transaction.Complete();
 
-                return value;
+                var newValue = Get(GetPrimaryKeyValue(value));
+
+                return newValue;
             }
         }
 
@@ -136,7 +134,7 @@ namespace Cheetah.DataAccess.Repositories.Base
 
         public virtual void BeforeInsert(TValue value)
         {
-            
+            SetCreatedAtValue(value, DateTime.UtcNow);
         }
 
         public virtual void AfterInsert(TValue newValue)
@@ -162,25 +160,6 @@ namespace Cheetah.DataAccess.Repositories.Base
         public virtual void AfterDelete(TValue value)
         {
             
-        }
-
-        #endregion
-
-        #region IAsyncRepository Implementation
-
-        public virtual Task<TValue> GetAsync(TKey primaryKey)
-        {
-            return new Task<TValue>(() => Get(primaryKey));
-        }
-
-        public virtual Task<TValue> SaveAsync(TValue value)
-        {
-            return new Task<TValue>(() => Save(value));
-        }
-
-        public virtual Task DeleteAsync(TKey primaryKey)
-        {
-            return new Task(() => Delete(primaryKey));
         }
 
         #endregion

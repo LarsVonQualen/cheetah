@@ -6,22 +6,18 @@ using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Interfaces.Base;
 using Cheetah.DataAccess.Repositories.Base;
 using Cheetah.DataAccess.Models;
+using PetaPoco;
 
 namespace Cheetah.DataAccess.Repositories
 {
     abstract class OwnableRepository<TKey, TOwner, TValue> : 
         Repository<TKey, TValue>,
-        IAsyncOwnableRepository<TKey, TOwner, TValue> 
+        IOwnableRepository<TKey, TOwner, TValue> 
         where TValue : class, new()
     {
-        protected OwnableRepository(string connectionString) : base(connectionString)
+        protected OwnableRepository()
         {
             SetOwnerPropertyName("CreatedBy");
-        }
-
-        protected OwnableRepository() : this("CheetahPocoModel")
-        {
-            
         }
 
         #region IAsyncOwnableRepository implementation
@@ -42,11 +38,6 @@ namespace Cheetah.DataAccess.Repositories
         public ICollection<TValue> ListByOwner(TOwner ownerKey)
         {
             return Database.Fetch<TValue>($"WHERE {OwnerKeyName}=@0", ownerKey);
-        }
-
-        public Task<ICollection<TValue>> ListByOwnerAsync(TOwner ownerKey)
-        {
-            return new Task<ICollection<TValue>>(() => ListByOwner(ownerKey));
         }
 
         #endregion

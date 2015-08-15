@@ -38,20 +38,19 @@ namespace Cheetah.Security.Implementation.Managers
             TokenGenerator = tokenGenerator;
         }
 
-        public RefreshToken Create(User user, string password)
+        public User Create(User user, string password)
         {
             var newUser = UserStore.Create(user);
             var hashedPassword = PasswordHasher.HashPassword(password);
 
             UserStore.SetPasswordHash(newUser.UserId, hashedPassword);
-
-            var newToken = RefreshTokenStore.Create(new RefreshToken()
+            RefreshTokenStore.Create(new RefreshToken()
             {
                 UserId = newUser.UserId,
                 Token = TokenGenerator.Generate(newUser, hashedPassword)
             });
 
-            return newToken;
+            return newUser;
         }
 
         public IAuthorizationGrant Authorize(ILocalAuthRequest authRequest)
@@ -103,95 +102,13 @@ namespace Cheetah.Security.Implementation.Managers
             if (existing == null)
                 throw new InvalidAccessToken();
 
-            if (Hasher.SlowEquals(existing.Token, accessToken))
+            if (existing.Expires < DateTime.UtcNow)
+                throw new AccessTokenExpired();
+
+            return new AuthenticationResponse()
             {
-                return new AuthenticationResponse()
-                {
-                    IsValid = true
-                };
-            }
-            else
-            {
-                throw new InvalidAccessToken();
-            }            
-        }
-
-        public async Task<RefreshToken> CreateAsync(User user, string password)
-        {
-            var newUser = await UserStore.CreateAsync(user);
-            var hashedPassword = PasswordHasher.HashPassword(password);
-
-            await UserStore.SetPasswordHashAsync(newUser.UserId, hashedPassword);
-
-            var newToken = await RefreshTokenStore.CreateAsync(new RefreshToken()
-            {
-                UserId = newUser.UserId,
-                Token = TokenGenerator.Generate(newUser, hashedPassword)
-            });
-
-            return newToken;
-        }
-
-        public async Task<IAuthorizationGrant> AuthorizeAsync(ILocalAuthRequest authRequest)
-        {
-            var user = await UserStore.FindAsync(authRequest.Username);
-            var correctHash = await UserStore.FindPasswordHashAsync(user.UserId);
-            var valid = PasswordHasher.Verify(authRequest.Password, correctHash);
-
-            if (!valid)
-                throw new InvalidCredentials();
-
-            var refreshToken = await RefreshTokenStore.FindAsync(user.UserId);
-
-            var grant = new AuthorizationGrant
-            {
-                ClientId = user.ClientId,
-                RefreshToken = refreshToken
-            };
-
-            return grant;
-        }
-
-        public async Task<AccessToken> RefreshAsync(IRefreshRequest<RefreshToken> refreshRequest)
-        {
-            var correctToken = await RefreshTokenStore.FindAsync(refreshRequest.RefreshToken.Token);
-
-            if (correctToken == null)
-                throw new InvalidRefreshToken();
-
-            var user = await UserStore.FindAsync(correctToken.UserId);
-            var passwordHash = await UserStore.FindPasswordHashAsync(user.UserId);
-
-            await AccessTokenStore.RevokeAsync(correctToken.UserId);
-
-            var accessToken = await AccessTokenStore.CreateAsync(new AccessToken()
-            {
-                UserId = user.UserId,
-                Token = TokenGenerator.Generate(user, passwordHash),
-                Expires = DateTime.UtcNow.AddHours(12)
-            });
-
-            return accessToken;
-        }
-
-        public async Task<IAuthenticationResponse> AuthenticateAsync(string accessToken)
-        {
-            var existing = await AccessTokenStore.FindAsync(accessToken);
-
-            if (existing == null)
-                throw new InvalidAccessToken();
-
-            if (Hasher.SlowEquals(existing.Token, accessToken))
-            {
-                return new AuthenticationResponse()
-                {
-                    IsValid = true
-                };
-            }
-            else
-            {
-                throw new InvalidAccessToken();
-            }
-        }
+                IsValid = Hasher.SlowEquals(existing.Token, accessToken)
+            };          
+        }        
     }
 }

@@ -43,32 +43,7 @@ namespace Cheetah.Security.Implementation.Stores
 
         public void SetPasswordHash(Guid userId, string hash)
         {
-            _passwordHashRepository.SetPasswordHashAsync(userId, hash);
-        }
-
-        public Task<User> FindAsync(Guid userId)
-        {
-            return _userRepository.GetAsync(userId);
-        }
-
-        public Task<User> FindAsync(string username)
-        {
-            return _userRepository.GetAsync(username);
-        }
-
-        public Task<User> CreateAsync(User newUser)
-        {
-            return _userRepository.SaveAsync(newUser);
-        }
-
-        public Task<string> FindPasswordHashAsync(Guid userId)
-        {
-            return _passwordHashRepository.FindPasswordHashAsync(userId);
-        }
-
-        public Task SetPasswordHashAsync(Guid userId, string hash)
-        {
-            return _passwordHashRepository.SetPasswordHashAsync(userId, hash);
-        }
+            _passwordHashRepository.SetPasswordHash(userId, hash);
+        }       
     }
 }

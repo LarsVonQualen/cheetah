@@ -5,9 +5,8 @@ using Cheetah.DataAccess.Models;
 
 namespace Cheetah.DataAccess.Interfaces
 {
-    public interface IUserRepository : IAsyncTwoKeyRepository<int, Guid, User>
+    public interface IUserRepository : ITwoKeyRepository<int, Guid, User>
     {
         User Get(string username);
-        Task<User> GetAsync(string username);
     }
 }

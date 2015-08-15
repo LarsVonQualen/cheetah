@@ -26,10 +26,6 @@
 
 	Namespace = "Cheetah.DataAccess.Models";
 
-	// Renames
-	tables["Addresses"].ClassName = "Address";
-	tables["Userstories"].ClassName = "Userstory";
-
 	// Generate output
 	if (tables.Count>0)
 	{

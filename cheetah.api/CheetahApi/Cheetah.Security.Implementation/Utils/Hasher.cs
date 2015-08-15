@@ -90,7 +90,10 @@ namespace Cheetah.Security.Implementation.Utils
 
         public bool SlowEquals(string a, string b)
         {
-            return SlowEquals(Convert.FromBase64String(a), Convert.FromBase64String(b));
+            var bytesFromA = GetBytes(a);
+            var bytesFromB = GetBytes(b);
+
+            return SlowEquals(bytesFromA, bytesFromB);
         }
 
         /// <summary>
@@ -122,6 +125,20 @@ namespace Cheetah.Security.Implementation.Utils
             Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(toHash, salt);
             pbkdf2.IterationCount = iterations;
             return pbkdf2.GetBytes(outputBytes);
+        }
+
+        private byte[] GetBytes(string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+            return bytes;
+        }
+
+        private string GetString(byte[] bytes)
+        {
+            char[] chars = new char[bytes.Length / sizeof(char)];
+            System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+            return new string(chars);
         }
     }
 }

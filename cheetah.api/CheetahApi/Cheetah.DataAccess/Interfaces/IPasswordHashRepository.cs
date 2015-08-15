@@ -7,12 +7,9 @@ using Task = System.Threading.Tasks.Task;
 namespace Cheetah.DataAccess.Interfaces
 {
     public interface IPasswordHashRepository :
-        IAsyncOwnableTwoKeyRepository<int, Guid, Guid, PasswordHash>
+        IOwnableTwoKeyRepository<int, Guid, Guid, PasswordHash>
     {
         string FindPasswordHash(Guid userId);
-        Task<string> FindPasswordHashAsync(Guid userId);
-
         void SetPasswordHash(Guid userId, string hash);
-        Task SetPasswordHashAsync(Guid userId, string hash);
     }
 }

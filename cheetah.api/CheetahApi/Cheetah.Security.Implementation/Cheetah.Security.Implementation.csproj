@@ -48,13 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\AccessTokenExpired.cs" />
     <Compile Include="Exceptions\InvalidAccessToken.cs" />
     <Compile Include="Exceptions\InvalidCredentials.cs" />
     <Compile Include="Exceptions\InvalidRefreshToken.cs" />
     <Compile Include="Models\AuthenticationResponse.cs" />
     <Compile Include="Models\AuthorizationGrant.cs" />
+    <Compile Include="Models\LocalAuthRequest.cs" />
+    <Compile Include="Models\RefreshRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RuntimeModule.cs" />
+    <Compile Include="SecurityModule.cs" />
     <Compile Include="Stores\TokenStore.cs" />
     <Compile Include="Managers\LocalUserManager.cs" />
     <Compile Include="Stores\UserStore.cs" />

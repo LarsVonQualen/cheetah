@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Reflection;
+using Cheetah.DataAccess;
+using Cheetah.Security.Implementation;
 using Ninject;
 
 namespace Cheetah.WebApi
@@ -18,9 +20,8 @@ namespace Cheetah.WebApi
 
         private static void RegisterServices(KernelBase kernel)
         {
-            kernel.Load<DataAccess.RuntimeModule>();
-            kernel.Load<Security.Implementation.RuntimeModule>();
-            kernel.Load<RuntimeModule>();
+            kernel.Load<DataAccessModule>();
+            kernel.Load<SecurityModule>();
         }
     }
 }

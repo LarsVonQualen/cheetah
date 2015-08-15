@@ -45,10 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\Base\IAsyncOwnableRepository.cs" />
-    <Compile Include="Interfaces\Base\IAsyncOwnableTwoKeyRepository.cs" />
-    <Compile Include="Interfaces\Base\IAsyncRepository.cs" />
-    <Compile Include="Interfaces\Base\IAsyncTwoKeyRepository.cs" />
     <Compile Include="Interfaces\Base\IOwnableRepository.cs" />
     <Compile Include="Interfaces\Base\IOwnableTwoKeyRepository.cs" />
     <Compile Include="Interfaces\Base\IOwner.cs" />
@@ -78,7 +74,7 @@
     <Compile Include="Repositories\PasswordHashRepository.cs" />
     <Compile Include="Repositories\RefreshTokenRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="RuntimeModule.cs" />
+    <Compile Include="DataAccessModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

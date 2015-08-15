@@ -174,9 +174,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Base\BaseApiController.cs" />
     <Compile Include="Controllers\Base\RepoController.cs" />
+    <Compile Include="Controllers\ProtectedController.cs" />
+    <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RuntimeModule.cs" />
+    <Compile Include="WebApiModule.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

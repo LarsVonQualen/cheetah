@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Models;
 using Cheetah.DataAccess.Repositories.Base;
+using PetaPoco;
 
 namespace Cheetah.DataAccess.Repositories
 {
@@ -17,11 +18,6 @@ namespace Cheetah.DataAccess.Repositories
             AfterGet(result);
 
             return result;
-        }
-
-        public Task<RefreshToken> GetAsync(string token)
-        {
-            return new Task<RefreshToken>(() => Get(token));
         }
     }
 }

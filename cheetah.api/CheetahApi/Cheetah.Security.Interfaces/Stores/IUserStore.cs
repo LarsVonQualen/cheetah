@@ -11,11 +11,5 @@ namespace Cheetah.Security.Interfaces.Stores
         TUser Create(TUser newUser);
         string FindPasswordHash(Guid userId);
         void SetPasswordHash(Guid userId, string hash);
-
-        Task<TUser> FindAsync(Guid userId);
-        Task<TUser> FindAsync(string username);
-        Task<TUser> CreateAsync(TUser newUser);
-        Task<string> FindPasswordHashAsync(Guid userId);
-        Task SetPasswordHashAsync(Guid userId, string hash);
     }
 }

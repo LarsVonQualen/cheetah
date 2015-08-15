@@ -5,6 +5,6 @@ namespace Cheetah.DataAccess.Models
 {
     public partial class RefreshToken : IToken
     {
-         
+        public string Type => "refresh";
     }
 }

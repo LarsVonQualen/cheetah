@@ -10,7 +10,7 @@ using Ninject.Modules;
 
 namespace Cheetah.Security.Implementation
 {
-    public class RuntimeModule : NinjectModule
+    public class SecurityModule : NinjectModule
     {
         public override void Load()
         {
@@ -38,9 +38,9 @@ namespace Cheetah.Security.Implementation
                 .To<UserStore>()
                 .InThreadScope();
 
-            Bind<ILocalUserManager<User, AccessToken, RefreshToken>>()
-                .To<LocalUserManager>()
-                .InThreadScope();
+            //Bind<ILocalUserManager<User, AccessToken, RefreshToken>>()
+            //    .To<LocalUserManager>()
+            //    .InThreadScope();
         }
     }
 }

@@ -41,25 +41,5 @@ namespace Cheetah.Security.Implementation.Stores
         {
             _tokenRepository.Delete(userId);
         }
-
-        public Task<TToken> FindAsync(Guid userId)
-        {
-            return _tokenRepository.GetAsync(userId);
-        }
-
-        public Task<TToken> FindAsync(string token)
-        {
-            return _tokenRepository.GetAsync(token);
-        }
-
-        public Task<TToken> CreateAsync(TToken token)
-        {
-            return _tokenRepository.SaveAsync(token);
-        }
-
-        public Task RevokeAsync(Guid userId)
-        {
-            return _tokenRepository.DeleteAsync(userId);
-        }
     }
 }

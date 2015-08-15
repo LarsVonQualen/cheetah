@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Models;
 using Cheetah.DataAccess.Repositories.Base;
+using Ninject;
+using PetaPoco;
 using Task = System.Threading.Tasks.Task;
 
 namespace Cheetah.DataAccess.Repositories
@@ -11,6 +13,9 @@ namespace Cheetah.DataAccess.Repositories
         OwnableTwoKeyRepository<int, Guid, Guid, PasswordHash>,
         IPasswordHashRepository
     {
+        [Inject]
+        public IUserRepository UserRepository { get; set; }
+
         public string FindPasswordHash(Guid userId)
         {
             var result = Get(userId);
@@ -21,26 +26,16 @@ namespace Cheetah.DataAccess.Repositories
             return result.Hash;
         }
 
-        public Task<string> FindPasswordHashAsync(Guid userId)
-        {
-            return new Task<string>(() => FindPasswordHash(userId));
-        }
-
         public void SetPasswordHash(Guid userId, string hash)
         {
-            var result = Get(userId);
-
-            if (result == null)
-                throw new ArgumentException("Invalid user id");
+            var result = Get(userId) ?? new PasswordHash()
+            {
+                UserId = userId
+            };
 
             result.Hash = hash;
 
             Save(result);
-        }
-
-        public Task SetPasswordHashAsync(Guid userId, string hash)
-        {
-            return new Task(() => SetPasswordHash(userId, hash));
         }
     }
 }

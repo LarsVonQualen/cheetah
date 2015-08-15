@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Models;
+using Cheetah.Security.Implementation.Models;
 using Cheetah.Security.Interfaces.Managers;
 using Cheetah.Security.Interfaces.Models;
 using Cheetah.WebApi.Controllers.Base;
@@ -34,9 +37,40 @@ namespace Cheetah.WebApi.Controllers
         /// <returns></returns>
         [Route("register")]
         [HttpPost]
-        public async Task<RefreshToken> Register(UserViewModel user)
+        public UserInfoViewModel Register(UserViewModel user)
         {
-            return await _localUserManager.CreateAsync(user.Info, user.Password);
+            var newUser = _localUserManager.Create(user.Info, user.Password);
+            var refreshToken = _localUserManager.RefreshTokenStore.Find(newUser.UserId);
+
+            return new UserInfoViewModel()
+            {
+                User = newUser,
+                RefreshToken = refreshToken
+            };
+        }
+
+        /// <summary>
+        /// Should look at the authorization header and find the user from that.
+        /// </summary>
+        /// <returns></returns>
+        [Route("me")]
+        [HttpGet]
+        public UserInfoViewModel Me()
+        {
+            var userAccessToken = ActionContext.Request.Headers.Authorization.Parameter;
+            var accessToken = _localUserManager.AccessTokenStore.Find(userAccessToken);
+
+            if (accessToken == null)
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+
+            var user = _localUserManager.UserStore.Find(accessToken.UserId);
+            var refreshToken = _localUserManager.RefreshTokenStore.Find(user.UserId);
+
+            return new UserInfoViewModel()
+            {
+                User = user,
+                RefreshToken = refreshToken
+            };
         }
 
         /// <summary>
@@ -49,9 +83,9 @@ namespace Cheetah.WebApi.Controllers
         /// <returns></returns>
         [Route("authorize")]
         [HttpPost]
-        public Task<IAuthorizationGrant> Authorize(ILocalAuthRequest authRequest)
+        public IAuthorizationGrant Authorize(LocalAuthRequest authRequest)
         {
-            return _localUserManager.AuthorizeAsync(authRequest);
+            return _localUserManager.Authorize(authRequest);
         }
 
         /// <summary>
@@ -62,9 +96,9 @@ namespace Cheetah.WebApi.Controllers
         /// <returns></returns>
         [Route("refresh")]
         [HttpPost]
-        public Task<AccessToken> Refresh(IRefreshRequest<RefreshToken> refreshRequest)
+        public AccessToken Refresh(RefreshRequest refreshRequest)
         {
-            return _localUserManager.RefreshAsync(refreshRequest);
+            return _localUserManager.Refresh(refreshRequest);
         }
 
         /// <summary>
@@ -74,11 +108,11 @@ namespace Cheetah.WebApi.Controllers
         /// </summary>
         /// <param name="accessToken"></param>
         /// <returns></returns>
-        [Route("authenticate/{accessToken:string}")]
+        [Route("authenticate/{accessToken:alpha}")]
         [HttpGet]
-        public Task<IAuthenticationResponse> Authenticate(string accessToken)
+        public IAuthenticationResponse Authenticate(string accessToken)
         {
-            return _localUserManager.AuthenticateAsync(accessToken);
+            return _localUserManager.Authenticate(accessToken);
         }
     }
 }

@@ -19,14 +19,9 @@ namespace Cheetah.Security.Interfaces.Managers
         IPasswordHasher PasswordHasher { get; set; }
         ITokenGenerator TokenGenerator { get; set; }
 
-        TRefreshToken Create(TUser user, string password);
+        TUser Create(TUser user, string password);
         IAuthorizationGrant Authorize(TTAuthRequest authRequest);
         TAccessToken Refresh(IRefreshRequest<TRefreshToken> refreshRequest);
         IAuthenticationResponse Authenticate(string accessToken);
-
-        Task<TRefreshToken> CreateAsync(TUser user, string password);
-        Task<IAuthorizationGrant> AuthorizeAsync(TTAuthRequest authRequest);
-        Task<TAccessToken> RefreshAsync(IRefreshRequest<TRefreshToken> refreshRequest);
-        Task<IAuthenticationResponse> AuthenticateAsync(string accessToken);
     }
 }

@@ -3,11 +3,14 @@
     [UserId]    UNIQUEIDENTIFIER NOT NULL,
     [Token]     NVARCHAR (MAX)   NOT NULL,
     [Expires]   DATETIME         NOT NULL,
-    [CreatedAt] DATETIME         DEFAULT (getutcdate()) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_AccessTokens_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserId]),
-    CONSTRAINT [UQ_AccessTokens_UserId] UNIQUE NONCLUSTERED ([UserId] ASC)
+    [CreatedAt] DATETIME         NOT NULL,
+    CONSTRAINT [PK_AcessTokens_Id] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_AccessTokens_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserId])
 );
+
+
+
+
 
 
 GO

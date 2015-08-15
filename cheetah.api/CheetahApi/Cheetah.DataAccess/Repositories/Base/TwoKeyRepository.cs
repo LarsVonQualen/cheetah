@@ -1,22 +1,18 @@
 ﻿using System.Reflection;
 using System.Threading.Tasks;
 using Cheetah.DataAccess.Interfaces.Base;
+using PetaPoco;
 
 namespace Cheetah.DataAccess.Repositories.Base
 {
     abstract class TwoKeyRepository<TKey, TSecondaryKey, TValue> :
         Repository<TKey, TValue>,
-        IAsyncTwoKeyRepository<TKey, TSecondaryKey, TValue>
+        ITwoKeyRepository<TKey, TSecondaryKey, TValue>
         where TValue : class, new()
     {
-        protected TwoKeyRepository(string connectionString) : base(connectionString)
+        protected TwoKeyRepository() 
         {
             SetSecondaryKeyName("UserId");
-        }
-
-        protected TwoKeyRepository() : this("CheetahPocoModel")
-        {
-            
         }
 
         #region IAsyncTwoKeyRepository Implementation
@@ -60,16 +56,6 @@ namespace Cheetah.DataAccess.Repositories.Base
             BeforeDelete(current);
             Database.Delete<TValue>($"WHERE {SecondaryKey}=@0", secondaryKey);
             AfterDelete(current);
-        }
-
-        public Task<TValue> GetAsync(TSecondaryKey secondaryKey)
-        {
-            return new Task<TValue>(() => Get(secondaryKey));
-        }
-
-        public Task DeleteAsync(TSecondaryKey secondaryKey)
-        {
-            return new Task(() => Delete(secondaryKey));
         }
 
         #endregion

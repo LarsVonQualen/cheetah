@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Models;
 using Cheetah.DataAccess.Repositories.Base;
+using PetaPoco;
 
 namespace Cheetah.DataAccess.Repositories
 {
@@ -19,9 +20,12 @@ namespace Cheetah.DataAccess.Repositories
             return result;
         }
 
-        public Task<User> GetAsync(string username)
+        public override void BeforeInsert(User value)
         {
-            return new Task<User>(() => Get(username));
+            base.BeforeInsert(value);
+
+            value.ClientId = Guid.NewGuid();
+            value.UserId = Guid.NewGuid();
         }
     }
 }
