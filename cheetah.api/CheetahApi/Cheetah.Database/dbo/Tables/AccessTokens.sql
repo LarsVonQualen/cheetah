@@ -5,8 +5,10 @@
     [Expires]   DATETIME         NOT NULL,
     [CreatedAt] DATETIME         NOT NULL,
     CONSTRAINT [PK_AcessTokens_Id] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_AccessTokens_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserId])
+    CONSTRAINT [FK_AccessTokens_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserId]) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
 
 
 

@@ -4,8 +4,10 @@
     [Hash]      NVARCHAR (MAX)   NOT NULL,
     [CreatedAt] DATETIME         NOT NULL,
     CONSTRAINT [PK_PasswordHashes_Id] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_PasswordHashes_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserId])
+    CONSTRAINT [FK_PasswordHashes_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserId]) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
 
 
 

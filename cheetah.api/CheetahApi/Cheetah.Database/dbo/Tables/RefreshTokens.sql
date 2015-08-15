@@ -4,8 +4,10 @@
     [Token]     NVARCHAR (MAX)   NOT NULL,
     [CreatedAt] DATETIME         NOT NULL,
     CONSTRAINT [PK_RefreshTokens_Id] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_RefreshTokens_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserId])
+    CONSTRAINT [FK_RefreshTokens_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserId]) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
 
 
 

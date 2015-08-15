@@ -4,8 +4,12 @@
     [Username]  NVARCHAR (255)   NOT NULL,
     [CreatedAt] DATETIME         NOT NULL,
     [ClientId]  UNIQUEIDENTIFIER DEFAULT (newid()) NOT NULL,
-    CONSTRAINT [PK_Users_UserId] PRIMARY KEY CLUSTERED ([UserId] ASC)
+    CONSTRAINT [PK_Users_Id] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [UQ_USers_UserID] UNIQUE NONCLUSTERED ([UserId] ASC),
+    CONSTRAINT [UQ_Users_Username] UNIQUE NONCLUSTERED ([Username] ASC)
 );
+
+
 
 
 
