@@ -55,6 +55,7 @@
     <Compile Include="Interfaces\IPasswordHashRepository.cs" />
     <Compile Include="Interfaces\IRefreshTokenRepository.cs" />
     <Compile Include="Interfaces\ITokenRepository.cs" />
+    <Compile Include="Interfaces\IUserProfileRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Models\AccessToken.cs" />
     <Compile Include="Models\RefreshToken.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Repositories\Base\TwoKeyRepository.cs" />
     <Compile Include="Repositories\PasswordHashRepository.cs" />
     <Compile Include="Repositories\RefreshTokenRepository.cs" />
+    <Compile Include="Repositories\UserProfileRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="DataAccessModule.cs" />
   </ItemGroup>

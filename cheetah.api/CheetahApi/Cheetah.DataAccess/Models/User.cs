@@ -5,6 +5,6 @@ namespace Cheetah.DataAccess.Models
 {
     public partial class User : IUser
     {
-         
+        public UserProfile UserProfile { get; set; }
     }
 }

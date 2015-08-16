@@ -174,7 +174,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Base\BaseApiController.cs" />
     <Compile Include="Controllers\Base\RepoController.cs" />
-    <Compile Include="Controllers\ProtectedController.cs" />
+    <Compile Include="Controllers\Base\ProtectedBaseApiController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

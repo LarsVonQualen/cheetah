@@ -296,6 +296,68 @@ namespace Cheetah.DataAccess.Models
 
 
 
+
+
+		[Column] public string Email { get; set; }
+
+
+
+
+
+		[Column] public int? UserProfileId { get; set; }
+
+
+
+	}
+
+    
+	[TableName("UserProfiles")]
+
+
+	[PrimaryKey("Id")]
+
+
+
+	[ExplicitColumns]
+    public partial class UserProfile : CheetahPocoModelDB.Record<UserProfile>  
+    {
+
+
+
+		[Column] public int Id { get; set; }
+
+
+
+
+
+		[Column] public string FirstName { get; set; }
+
+
+
+
+
+		[Column] public string LastName { get; set; }
+
+
+
+
+
+		[Column] public DateTime? DateOfBirth { get; set; }
+
+
+
+
+
+		[Column] public string Location { get; set; }
+
+
+
+
+
+		[Column] public string Description { get; set; }
+
+
+
 	}
 
 

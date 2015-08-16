@@ -37,6 +37,10 @@ namespace Cheetah.DataAccess
 
             Bind<ITokenRepository<RefreshToken>>()
                 .To<RefreshTokenRepository>();
+
+            Bind<IUserProfileRepository>()
+                .To<UserProfileRepository>()
+                .InThreadScope();
         }
     }
 }

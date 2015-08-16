@@ -15,20 +15,15 @@ using Cheetah.Security.Interfaces.Models;
 using Cheetah.WebApi.Controllers.Base;
 using Cheetah.WebApi.Models;
 using Microsoft.Owin.Security;
+using Ninject;
 
 namespace Cheetah.WebApi.Controllers
 {
     [RoutePrefix("account")]
     public class AccountController : BaseApiController<Guid, User>
     {
-        private readonly ILocalUserManager<User, AccessToken, RefreshToken> _localUserManager;
-
-        public AccountController(
-            ILocalUserManager<User, AccessToken, RefreshToken> localUserManager
-            )
-        {
-            _localUserManager = localUserManager;
-        }
+        [Inject]
+        public ILocalUserManager<User, AccessToken, RefreshToken> LocalUserManager { get; set; }
 
         /// <summary>
         /// Should register the user...
@@ -39,8 +34,8 @@ namespace Cheetah.WebApi.Controllers
         [HttpPost]
         public UserInfoViewModel Register(UserViewModel user)
         {
-            var newUser = _localUserManager.Create(user.Info, user.Password);
-            var refreshToken = _localUserManager.RefreshTokenStore.Find(newUser.UserId);
+            var newUser = LocalUserManager.Create(user.Info, user.Password);
+            var refreshToken = LocalUserManager.RefreshTokenStore.Find(newUser.UserId);
 
             return new UserInfoViewModel()
             {
@@ -58,13 +53,13 @@ namespace Cheetah.WebApi.Controllers
         public UserInfoViewModel Me()
         {
             var userAccessToken = ActionContext.Request.Headers.Authorization.Parameter;
-            var accessToken = _localUserManager.AccessTokenStore.Find(userAccessToken);
+            var accessToken = LocalUserManager.AccessTokenStore.Find(userAccessToken);
 
             if (accessToken == null)
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
 
-            var user = _localUserManager.UserStore.Find(accessToken.UserId);
-            var refreshToken = _localUserManager.RefreshTokenStore.Find(user.UserId);
+            var user = LocalUserManager.UserStore.Find(accessToken.UserId);
+            var refreshToken = LocalUserManager.RefreshTokenStore.Find(user.UserId);
 
             return new UserInfoViewModel()
             {
@@ -85,7 +80,7 @@ namespace Cheetah.WebApi.Controllers
         [HttpPost]
         public IAuthorizationGrant Authorize(LocalAuthRequest authRequest)
         {
-            return _localUserManager.Authorize(authRequest);
+            return LocalUserManager.Authorize(authRequest);
         }
 
         /// <summary>
@@ -98,7 +93,7 @@ namespace Cheetah.WebApi.Controllers
         [HttpPost]
         public AccessToken Refresh(RefreshRequest refreshRequest)
         {
-            return _localUserManager.Refresh(refreshRequest);
+            return LocalUserManager.Refresh(refreshRequest);
         }
 
         /// <summary>
@@ -112,7 +107,7 @@ namespace Cheetah.WebApi.Controllers
         [HttpGet]
         public IAuthenticationResponse Authenticate(string accessToken)
         {
-            return _localUserManager.Authenticate(accessToken);
+            return LocalUserManager.Authenticate(accessToken);
         }
     }
 }

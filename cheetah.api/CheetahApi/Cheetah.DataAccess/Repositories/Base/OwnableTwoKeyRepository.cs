@@ -14,6 +14,7 @@ namespace Cheetah.DataAccess.Repositories.Base
         protected OwnableTwoKeyRepository()
         {
             SetOwnerPropertyName("CreatedBy");
+            SetDefaultSortOrder(CreatedAtProperty.Name, "DESC");
         }
 
         #region IAsyncOwnableRepository implementation
@@ -22,6 +23,7 @@ namespace Cheetah.DataAccess.Repositories.Base
 
         public string OwnerKeyName { get; set; }
         public PropertyInfo OwnerProperty { get; set; }
+        public string DefaultSortOrder { get; set; }
 
         public void SetOwnerPropertyName(string ownerPropertyName)
         {
@@ -29,11 +31,16 @@ namespace Cheetah.DataAccess.Repositories.Base
             OwnerProperty = GetPropertyInfo<TValue>(ownerPropertyName);
         }
 
+        public void SetDefaultSortOrder(string propertyName, string order)
+        {
+            DefaultSortOrder = $"ORDER BY {propertyName} {order}";
+        }
+
         #endregion
 
         public ICollection<TValue> ListByOwner(TOwner ownerKey)
         {
-            return Database.Fetch<TValue>($"WHERE {OwnerKeyName}=@0", ownerKey);
+            return Database.Fetch<TValue>($"WHERE {OwnerKeyName}=@0 {DefaultSortOrder}", ownerKey);
         }
 
         #endregion

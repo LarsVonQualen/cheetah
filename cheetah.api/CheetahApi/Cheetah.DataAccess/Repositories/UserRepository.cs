@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Models;
 using Cheetah.DataAccess.Repositories.Base;
+using Ninject;
 using PetaPoco;
 
 namespace Cheetah.DataAccess.Repositories
@@ -11,6 +12,9 @@ namespace Cheetah.DataAccess.Repositories
         TwoKeyRepository<int, Guid, User>, 
         IUserRepository
     {
+        [Inject]
+        public UserProfileRepository UserProfileRepository { get; set; }
+
         public User Get(string username)
         {
             var result = Database.SingleOrDefault<User>("WHERE Username=@0", username);
@@ -26,6 +30,20 @@ namespace Cheetah.DataAccess.Repositories
 
             value.ClientId = Guid.NewGuid();
             value.UserId = Guid.NewGuid();
+
+            if (value.UserProfile == null) return;
+
+            var profile = UserProfileRepository.Save(value.UserProfile);
+
+            value.UserProfileId = profile.Id;
+        }
+
+        public override void AfterGet(User value)
+        {
+            base.AfterGet(value);
+
+            if (value.UserProfileId.HasValue)
+                value.UserProfile = UserProfileRepository.Get(value.UserProfileId.GetValueOrDefault());
         }
     }
 }
