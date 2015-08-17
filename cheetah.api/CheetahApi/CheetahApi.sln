@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cheetah.DataAccess", "Cheetah.DataAccess\Cheetah.DataAccess.csproj", "{42E478A1-A498-4C20-88CB-0B868891ACF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cheetah.WebApi", "Cheetah.WebApi\Cheetah.WebApi.csproj", "{41150E55-D33B-40E0-A224-6D4FDD592DBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cheetah.Security.Interfaces", "Cheetah.Security.Interfaces\Cheetah.Security.Interfaces.csproj", "{4300F40D-D839-4D62-9D70-0AECD1971400}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cheetah.Security.Implementation", "Cheetah.Security.Implementation\Cheetah.Security.Implementation.csproj", "{A87C4AE2-1CD2-4004-BA13-2162D6131D55}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Cheetah.Database", "Cheetah.Database\Cheetah.Database.sqlproj", "{8895E5C3-5A7C-4E3E-8A2E-F5257351A032}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42E478A1-A498-4C20-88CB-0B868891ACF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42E478A1-A498-4C20-88CB-0B868891ACF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42E478A1-A498-4C20-88CB-0B868891ACF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42E478A1-A498-4C20-88CB-0B868891ACF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41150E55-D33B-40E0-A224-6D4FDD592DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4300F40D-D839-4D62-9D70-0AECD1971400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4300F40D-D839-4D62-9D70-0AECD1971400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4300F40D-D839-4D62-9D70-0AECD1971400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4300F40D-D839-4D62-9D70-0AECD1971400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A87C4AE2-1CD2-4004-BA13-2162D6131D55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A87C4AE2-1CD2-4004-BA13-2162D6131D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A87C4AE2-1CD2-4004-BA13-2162D6131D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A87C4AE2-1CD2-4004-BA13-2162D6131D55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8895E5C3-5A7C-4E3E-8A2E-F5257351A032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8895E5C3-5A7C-4E3E-8A2E-F5257351A032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8895E5C3-5A7C-4E3E-8A2E-F5257351A032}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8895E5C3-5A7C-4E3E-8A2E-F5257351A032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8895E5C3-5A7C-4E3E-8A2E-F5257351A032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8895E5C3-5A7C-4E3E-8A2E-F5257351A032}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
