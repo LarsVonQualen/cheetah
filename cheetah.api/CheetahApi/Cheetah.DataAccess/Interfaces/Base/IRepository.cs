@@ -23,6 +23,9 @@ namespace Cheetah.DataAccess.Interfaces.Base
         void SetCreatedAtValue(TValue obj, object value);
         void SetLastUpdatedAtValue(TValue obj, object value);
 
+        string DefaultSortOrder { get; set; }
+        void SetDefaultSortOrder(string propertyName, string order);
+
         TValue Get(TKey primaryKey);
         TValue Save(TValue value);
         void Delete(TKey primaryKey);

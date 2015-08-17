@@ -31,14 +31,20 @@ namespace Cheetah.DataAccess.Repositories.Base
         [Inject]
         public Database Database { get; set; }
 
+        #endregion
+
+        #region ConventionTools
+
         public string PrimaryKey { get; set; }
         public PropertyInfo PrimaryKeyProperty { get; set; }
         public PropertyInfo CreatedAtProperty { get; set; }
         public PropertyInfo LastUpdatedAtProperty { get; set; }
+        public string DefaultSortOrder { get; set; }
 
-        #endregion
-
-        #region ConventionTools
+        public void SetDefaultSortOrder(string propertyName, string order)
+        {
+            DefaultSortOrder = $"ORDER BY {propertyName} {order}";
+        }
 
         public PropertyInfo GetPropertyInfo<TPropValue>(string propName)
         {

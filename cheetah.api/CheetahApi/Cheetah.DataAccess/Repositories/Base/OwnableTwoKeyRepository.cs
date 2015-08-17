@@ -23,17 +23,11 @@ namespace Cheetah.DataAccess.Repositories.Base
 
         public string OwnerKeyName { get; set; }
         public PropertyInfo OwnerProperty { get; set; }
-        public string DefaultSortOrder { get; set; }
 
         public void SetOwnerPropertyName(string ownerPropertyName)
         {
             OwnerKeyName = ownerPropertyName;
             OwnerProperty = GetPropertyInfo<TValue>(ownerPropertyName);
-        }
-
-        public void SetDefaultSortOrder(string propertyName, string order)
-        {
-            DefaultSortOrder = $"ORDER BY {propertyName} {order}";
         }
 
         #endregion
