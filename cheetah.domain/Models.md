@@ -4,7 +4,7 @@
 - lastUpdatedAt: Date?
 - lastUpdatedBy: User?
 
-### Address
+### BillingAddress
 - street: string
 - city: string
 - zipCode: string
@@ -14,7 +14,7 @@
 ### Corporation
 - name: string
 - description: string
-- address: Address
+- billingAddress: BillingAddress
 - meta: Metadata
 
 ### Organization
