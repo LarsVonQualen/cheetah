@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Models;
@@ -22,6 +24,20 @@ namespace Cheetah.DataAccess.Repositories
             AfterGet(result);
 
             return result;
+        }
+
+        public ICollection<User> GetByTeam(int teamId)
+        {
+            using (var transaction = Database.GetTransaction())
+            {
+                var userIds = Database.Fetch<TeamUserRelation>("WHERE TeamId=@0", teamId);
+
+                var users = userIds.Select(relation => Get(relation.UserId)).ToList();
+
+                transaction.Complete();
+
+                return users;
+            }
         }
 
         public override void BeforeInsert(User value)

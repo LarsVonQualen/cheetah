@@ -19,14 +19,11 @@ using Ninject;
 
 namespace Cheetah.WebApi.Controllers
 {
-    [RoutePrefix("account")]
-    public class AccountController : BaseApiController<Guid, User>
-    {
-        [Inject]
-        public ILocalUserManager<User, AccessToken, RefreshToken> LocalUserManager { get; set; }
-
+    [RoutePrefix("v1/account")]
+    public class AccountController : BaseController
+    {        
         /// <summary>
-        /// Should register the user...
+        /// Registers a new user
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -45,7 +42,7 @@ namespace Cheetah.WebApi.Controllers
         }
 
         /// <summary>
-        /// Should look at the authorization header and find the user from that.
+        /// Get the current users details
         /// </summary>
         /// <returns></returns>
         [Route("me")]
@@ -69,10 +66,7 @@ namespace Cheetah.WebApi.Controllers
         }
 
         /// <summary>
-        /// Should take some sort of request defining whether to use an ExternalLogin or
-        /// local login, in the form of a username and password.
-        /// 
-        /// Then return some sort authorization grant, with a client id and refresh token?!
+        /// Takes a LocalAuthRequests, verifies it and returns a AuthorizationGrant
         /// </summary>
         /// <param name="authRequest"></param>
         /// <returns></returns>
@@ -84,8 +78,7 @@ namespace Cheetah.WebApi.Controllers
         }
 
         /// <summary>
-        /// Should take a refresh request consisting of a client id and refresh token, then
-        /// it should return some sort of object that holds the access token.
+        /// Takes a RefreshRequest and if valid returns a new AccessToken
         /// </summary>
         /// <param name="refreshRequest"></param>
         /// <returns></returns>
@@ -97,9 +90,7 @@ namespace Cheetah.WebApi.Controllers
         }
 
         /// <summary>
-        /// Should take the access token and return some sort of object that tells whether it
-        /// is a valid user or not. Should not necessarily be used, but would be nice to be
-        /// able to explicit check the access token.
+        /// Takes an AccessToken and verifies that it is valid
         /// </summary>
         /// <param name="accessToken"></param>
         /// <returns></returns>

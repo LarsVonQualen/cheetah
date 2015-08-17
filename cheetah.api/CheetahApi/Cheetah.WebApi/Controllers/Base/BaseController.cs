@@ -1,17 +1,14 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using Cheetah.DataAccess.Models;
-using Cheetah.Security.Implementation.Utils;
 using Cheetah.Security.Interfaces.Managers;
-using Cheetah.WebApi.Controllers.Base;
-using Cheetah.WebApi.Models;
 using Ninject;
 
 namespace Cheetah.WebApi.Controllers.Base
-{
-    [CheetahAuthorize]
-    public class ProtectedBaseApiController<TKey, TValue> : BaseApiController<TKey, TValue>
+{    
+    public abstract class BaseController : ApiController
     {
         [Inject]
         public ILocalUserManager<User, AccessToken, RefreshToken> LocalUserManager { get; set; }

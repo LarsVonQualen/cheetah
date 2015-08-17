@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using System.Web.Mvc;
 using Cheetah.WebApi;
 using Microsoft.Owin;
 using Ninject.Web.Common.OwinHost;
@@ -11,13 +12,18 @@ namespace Cheetah.WebApi
 {
     public class Startup
     {
+        public static HttpConfiguration HttpConfiguration { get; private set; }
+
         public void Configuration(IAppBuilder app)
         {
-            var config = new HttpConfiguration();
-            WebApiConfig.Register(config);
+            HttpConfiguration = new HttpConfiguration();
 
+            AreaRegistration.RegisterAllAreas();
+
+            WebApiConfig.Register(HttpConfiguration);
+            
             app.UseNinjectMiddleware(() => NinjectConfig.CreateKernel.Value);
-            app.UseNinjectWebApi(config);
+            app.UseNinjectWebApi(HttpConfiguration);
         }
     }
 }

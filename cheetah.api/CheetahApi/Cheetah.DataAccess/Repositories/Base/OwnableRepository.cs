@@ -8,7 +8,7 @@ using Cheetah.DataAccess.Repositories.Base;
 using Cheetah.DataAccess.Models;
 using PetaPoco;
 
-namespace Cheetah.DataAccess.Repositories
+namespace Cheetah.DataAccess.Repositories.Base
 {
     abstract class OwnableRepository<TKey, TOwner, TValue> : 
         Repository<TKey, TValue>,
