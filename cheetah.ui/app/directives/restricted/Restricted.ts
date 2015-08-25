@@ -6,10 +6,12 @@ module Cheetah.Directives.Restricted {
   class Restricted {
     public static $inject = ["$scope", "UserService"];
 
-    public allowed: boolean = false;
+    public allowed: boolean = true;
 
     constructor(private $scope: IRestrictedScope, private userService: Services.UserService) {
-      this.allowed = this.userService.canAccessArea(this.$scope.area);
+      this.allowed = userService.isAuthed();
+
+      $scope.$on(Enums.Events.Authenticated, user => this.allowed = userService.isAuthed());
     }
   }
 

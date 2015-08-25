@@ -110,6 +110,22 @@ gulp.task("clean-app-js", function (cb) {
 
 gulp.task("default", ["compile-less", "index"]);
 
+gulp.task("proxy", function () {
+  var proxy = require('express-http-proxy');
+  var express = require('express');
+  var app = express();
+
+  app.use(config.proxy.path, proxy(config.proxy.target, {
+    forwardPath: function(req, res) {
+      return require('url').parse(req.url).path;
+    }
+  }));
+  
+  app.use("/", express.static(__dirname));
+
+  app.listen(config.proxy.port);
+});
+
 gulp.task("watch", ["default"], function () {
   gulp.src(config.watch.files.all).pipe(debug({title: "watch"}));
   gulp.watch(config.watch.files.all, ["default"]);

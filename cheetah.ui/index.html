@@ -20,49 +20,61 @@
     <script src="vendor/angular-local-storage.js"></script>
     <!-- endbower -->
     <!-- inject:js -->
+
     <script src="app/app.js"></script>
+
     <script src="app/animations/cheetahSlide.js"></script>
+
     <script src="app/config/app.bootstrap.js"></script>
+
     <script src="app/config/app.config.js"></script>
+
     <script src="app/config/app.routes.js"></script>
+
+    <script src="app/enums/Events.js"></script>
+
     <script src="app/enums/NotificationLifecycle.js"></script>
+
     <script src="app/enums/NotificationType.js"></script>
-    <script src="app/framework/ApiEndpoint.js"></script>
-    <script src="app/framework/IEndpoint.js"></script>
-    <script src="app/framework/LocalStorageEndPoint.js"></script>
-    <script src="app/models/Notification.js"></script>
+
+    <script src="app/framework/BaseApiService.js"></script>
+
+    <script src="app/framework/BaseModel.js"></script>
+
+    <script src="app/framework/Utility.js"></script>
+
+    <script src="app/models/Models.js"></script>
+
+    <script src="app/services/AccessTokenStoreService.js"></script>
+
     <script src="app/services/NotificationService.js"></script>
+
     <script src="app/services/RepositoryService.js"></script>
+
     <script src="app/services/UserService.js"></script>
+
     <script src="app/areas/auth/ForgotPasswordController.js"></script>
+
     <script src="app/areas/auth/SignInController.js"></script>
+
     <script src="app/areas/auth/SignUpController.js"></script>
+
     <script src="app/areas/dashboard/DashboardOverviewController.js"></script>
+
     <script src="app/areas/projects/ProjectsOverviewController.js"></script>
+
     <script src="app/directives/navbar/Navbar.js"></script>
+
     <script src="app/directives/notifications/notifications.js"></script>
+
     <script src="app/directives/restricted/Restricted.js"></script>
+
     <script src="app/directives/tasks/Tasks.js"></script>
+
     <script src="app/directives/userstory/Userstory.js"></script>
-    <script src="app/models/base/BaseModel.js"></script>
-    <script src="app/models/base/BaseModelWithNumberKey.js"></script>
-    <script src="app/models/base/BaseModelWithStringKey.js"></script>
-    <script src="app/models/base/Metadata.js"></script>
-    <script src="app/models/base/User.js"></script>
-    <script src="app/models/domain/Address.js"></script>
-    <script src="app/models/domain/Corporation.js"></script>
-    <script src="app/models/domain/Feature.js"></script>
-    <script src="app/models/domain/Organization.js"></script>
-    <script src="app/models/domain/Permission.js"></script>
-    <script src="app/models/domain/Project.js"></script>
-    <script src="app/models/domain/Role.js"></script>
-    <script src="app/models/domain/Sprint.js"></script>
-    <script src="app/models/domain/SprintRetrospective.js"></script>
-    <script src="app/models/domain/SprintRetrospectiveItem.js"></script>
-    <script src="app/models/domain/SprintReview.js"></script>
-    <script src="app/models/domain/Tasks.js"></script>
-    <script src="app/models/domain/Team.js"></script>
-    <script src="app/models/domain/Userstory.js"></script>
+
+    <script src="app/services/api/AccountApiService.js"></script>
+
     <!-- endinject -->
   </head>
   <body>

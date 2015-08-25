@@ -18,6 +18,8 @@
   "homepage": "https://github.com/LarsVonQualen/cheetah",
   "dependencies": {
     "del": "^1.2.0",
+    "express": "^4.13.3",
+    "express-http-proxy": "^0.6.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-debug": "^2.0.1",

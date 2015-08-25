@@ -49,4 +49,9 @@ module.exports = function () {
   this.watch.files.all = ["app", "less"].map(function (val) {
     return self.app.path + val + "/**/*.*";
   });
+
+  this.proxy = {};
+  this.proxy.path = "/api";
+  this.proxy.port = 1511;
+  this.proxy.target = "172.16.168.130:5000"
 };

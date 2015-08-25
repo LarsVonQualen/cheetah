@@ -1,10 +1,10 @@
 module Cheetah.Areas.Projects {
   class ProjectsOverviewController {
-    public static $inject = ["RepositoryService"];
-    public projects: Array<Models.Domain.Project> = [];
+    public static $inject = [];
+    public projects = [];
 
-    constructor(private RepositoryService: Services.RepositoryService) {
-      RepositoryService.projects.all().then(projects => this.projects = projects);
+    constructor() {
+
     }
   }
 
