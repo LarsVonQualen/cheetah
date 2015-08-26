@@ -20,72 +20,46 @@
     <script src="vendor/angular-local-storage.js"></script>
     <!-- endbower -->
     <!-- inject:js -->
-
     <script src="app/app.js"></script>
-
-    <script src="app/animations/cheetahSlide.js"></script>
-
-    <script src="app/config/app.bootstrap.js"></script>
-
-    <script src="app/config/app.config.js"></script>
-
-    <script src="app/config/app.routes.js"></script>
-
-    <script src="app/enums/Events.js"></script>
-
-    <script src="app/enums/NotificationLifecycle.js"></script>
-
-    <script src="app/enums/NotificationType.js"></script>
-
-    <script src="app/framework/BaseApiService.js"></script>
-
-    <script src="app/framework/BaseModel.js"></script>
-
-    <script src="app/framework/Utility.js"></script>
-
-    <script src="app/models/Models.js"></script>
-
-    <script src="app/services/AccessTokenStoreService.js"></script>
-
-    <script src="app/services/NotificationService.js"></script>
-
-    <script src="app/services/RepositoryService.js"></script>
-
-    <script src="app/services/UserService.js"></script>
-
     <script src="app/areas/auth/ForgotPasswordController.js"></script>
-
     <script src="app/areas/auth/SignInController.js"></script>
-
     <script src="app/areas/auth/SignUpController.js"></script>
-
     <script src="app/areas/dashboard/DashboardOverviewController.js"></script>
-
     <script src="app/areas/projects/ProjectsOverviewController.js"></script>
-
+    <script src="app/config/app.bootstrap.js"></script>
+    <script src="app/config/app.config.js"></script>
+    <script src="app/config/app.routes.js"></script>
     <script src="app/directives/navbar/Navbar.js"></script>
-
     <script src="app/directives/notifications/notifications.js"></script>
-
     <script src="app/directives/restricted/Restricted.js"></script>
-
     <script src="app/directives/tasks/Tasks.js"></script>
-
     <script src="app/directives/userstory/Userstory.js"></script>
-
+    <script src="app/enums/Events.js"></script>
+    <script src="app/enums/NotificationLifecycle.js"></script>
+    <script src="app/enums/NotificationType.js"></script>
+    <script src="app/framework/BaseApiService.js"></script>
+    <script src="app/framework/BaseModel.js"></script>
+    <script src="app/framework/BaseStore.js"></script>
+    <script src="app/framework/Utility.js"></script>
+    <script src="app/models/Models.js"></script>
+    <script src="app/services/AccessTokenStoreService.js"></script>
     <script src="app/services/api/AccountApiService.js"></script>
-
+    <script src="app/services/NotificationService.js"></script>
+    <script src="app/services/RefreshTokenStoreService.js"></script>
+    <script src="app/services/RepositoryService.js"></script>
+    <script src="app/services/UserService.js"></script>
+    <script src="app/services/UserStoreService.js"></script>
     <!-- endinject -->
   </head>
   <body>
-    <restricted area="navbar">
-      <navbar></navbar>
-    </restricted>
+    <navbar></navbar>
 
     <div class="content">
       <div class="container-fluid" ui-view>
       </div>
     </div>
+
+    <notifications></notifications>
 
     <div class="footer">
       <div class="container text-muted text-center">

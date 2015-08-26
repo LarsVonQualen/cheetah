@@ -1,22 +1,21 @@
 <div class="row">
   <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
-    <h1>Cheetah <small>The agile tool!</small></h1>
     <div class="panel panel-primary panel-minimal">
       <div class="panel-heading">
         <h3 class="panel-title">Sign Up</h3>
       </div>
       <div class="panel-body">
-        <p class="text-center">All we need to get you started is your email address and a password. It's that easy!</p>
-        <form name="signUpCtrl.form" ng-submit="signUpCtrl.submit()" novalidate>
+        <p>All we need to get you started is a username and a password.</p>
+        <form name="signUpCtrl.form" ng-submit="signUpCtrl.submit()">
           <div class="form-group">
             <input
-              type="email"
-              placeholder="Email Address"
+              type="text"
+              placeholder="Username"
               class="form-control"
               name="email"
               id="email"
-              ng-model="signUpCtrl.user.email"
-              ng-required="true" />
+              ng-model="signUpCtrl.username"
+              required />
           </div>
           <div class="form-group">
             <input
@@ -25,15 +24,30 @@
               class="form-control"
               name="password"
               id="password"
-              ng-model="signUpCtrl.user.password"
-              ng-required="true" />
+              ng-model="signUpCtrl.password"
+              required />
           </div>
-          <div class="form-group text-right">
-            <button type="submit" class="btn btn-block btn-primary">Sign up</button>
+          <div class="form-group">
+            <input
+              type="password"
+              placeholder="Password confirmation"
+              class="form-control"
+              name="password"
+              id="password"
+              ng-model="signUpCtrl.passwordConfirmation"
+              required />
+          </div>
+          <div class="clearfix">
+            <p class="pull-left" ng-if="signUpCtrl.loading">
+              <i class="fa fa-spin fa-circle-o-notch"></i> {{signUpCtrl.progress}}
+            </p>
+            <div class="form-group pull-right">
+              <button type="submit" class="btn btn-primary btn-hollow">Sign up</button>
+            </div>
           </div>
         </form>
         <ul class="list-inline">
-          <li><a ui-sref="signin"><i class="fa fa-arrow-left"></i> Back to login</a></li>
+          <li><a ui-sref="signin"><i class="fa fa-arrow-left"></i> Back to sign in</a></li>
         </ul>
       </div>
     </div>

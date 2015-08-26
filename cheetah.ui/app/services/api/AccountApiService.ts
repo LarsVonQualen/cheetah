@@ -20,7 +20,7 @@ module Cheetah.Services.Api {
 
     public me(): angular.IPromise<Models.UserInfoViewModel> {
       return new this.$q((resolve, reject) => {
-        var token = this.AccessTokenStoreService.hasAccessToken() ? this.AccessTokenStoreService.get().Token : "MISSING";
+        var token = this.AccessTokenStoreService.exists() ? this.AccessTokenStoreService.get().Token : "MISSING";
         var authHeaderContent = ["Bearer ", token].join("");
 
         super
@@ -34,18 +34,11 @@ module Cheetah.Services.Api {
     }
 
     public authorize(localAuthRequest: Models.LocalAuthRequest): angular.IPromise<Models.AuthorizationGrant> {
-      var deferred = this.$q.defer();
-
-      super
-        .basePost("authorize", localAuthRequest)
-        .then(response => {
-          var herp = "derp";
-          var mappedResponse = Models.AuthorizationGrant.map(response);
-
-          deferred.resolve(mappedResponse);
-        }, deferred.reject);
-
-      return deferred.promise;
+      return new this.$q((resolve, reject) => {
+        super
+          .basePost("authorize", localAuthRequest)
+          .then(response => resolve(Models.AuthorizationGrant.map(response)), reject);
+      });
     }
 
     public refresh(refreshRequest: Models.RefreshRequest): angular.IPromise<Models.AccessToken> {
@@ -62,6 +55,14 @@ module Cheetah.Services.Api {
           .basePost("authenticate", accessToken)
           .then(response => resolve(Models.AuthenticationResponse.map(response)), reject);
       });
+    }
+
+    public revoke(user: Models.User): angular.IPromise<{}> {
+      return new this.$q((resolve, reject) => {
+        super
+          .baseGet(`revoke/${user.UserId}`)
+          .then(resolve, reject);
+      })
     }
   }
 

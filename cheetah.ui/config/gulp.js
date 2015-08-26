@@ -53,5 +53,5 @@ module.exports = function () {
   this.proxy = {};
   this.proxy.path = "/api";
   this.proxy.port = 1511;
-  this.proxy.target = "172.16.168.130:5000"
+  this.proxy.target = "172.16.168.138:5000"
 };

@@ -31,7 +31,6 @@
         "../typings/jquery/jquery.d.ts",
         "../typings/lodash/lodash.d.ts",
         "../typings/tsd.d.ts",
-        "./animations/cheetahSlide.ts",
         "./app.ts",
         "./areas/auth/ForgotPasswordController.ts",
         "./areas/auth/SignInController.ts",
@@ -51,11 +50,14 @@
         "./enums/NotificationType.ts",
         "./framework/BaseApiService.ts",
         "./framework/BaseModel.ts",
+        "./framework/BaseStore.ts",
         "./framework/Utility.ts",
         "./models/Models.ts",
         "./services/AccessTokenStoreService.ts",
         "./services/NotificationService.ts",
+        "./services/RefreshTokenStoreService.ts",
         "./services/UserService.ts",
+        "./services/UserStoreService.ts",
         "./services/api/AccountApiService.ts"
     ]
 }

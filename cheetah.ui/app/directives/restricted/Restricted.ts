@@ -11,7 +11,7 @@ module Cheetah.Directives.Restricted {
     constructor(private $scope: IRestrictedScope, private userService: Services.UserService) {
       this.allowed = userService.isAuthed();
 
-      $scope.$on(Enums.Events.Authenticated, user => this.allowed = userService.isAuthed());
+      $scope.$on(Enums.Events.Authenticated, event => this.allowed = userService.isAuthed());
     }
   }
 

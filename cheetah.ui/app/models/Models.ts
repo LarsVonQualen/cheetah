@@ -27,6 +27,28 @@ module Cheetah.Models {
     }
   }
 
+  export class Notification {
+    constructor(
+      public type: Enums.NotificationType,
+      public body: string,
+      public title: string = "",
+      public lifeCycle: Enums.NotificationLifecycle = Enums.NotificationLifecycle.Transient
+    ) {}
+
+    public computedType(): string {
+      switch (this.type) {
+        case Enums.NotificationType.Success:
+          return "success";
+        case Enums.NotificationType.Warning:
+          return "warning";
+        case Enums.NotificationType.Info:
+          return "info";
+        case Enums.NotificationType.Danger:
+          return "danger";
+      }
+    }
+  }
+
   export class AccessToken extends Framework.BaseModel {
     public Id: number;
     public Type: TokenType;
@@ -36,7 +58,8 @@ module Cheetah.Models {
     public CreatedAt: Date;
 
     public static map(model: any): AccessToken {
-      var mapped = super.map<AccessToken>(model);
+      model = super.normalizeModel(model);
+      var mapped = super.map<AccessToken>(model || {});
 
       mapped.Id = model.Id;
       mapped.Type = TokenTypeUtility.ToEnum(model.Type);
@@ -58,7 +81,8 @@ module Cheetah.Models {
     public Description: string;
 
     public static map(model: any): UserProfile {
-      var mapped = super.map<UserProfile>(model);
+      model = super.normalizeModel(model);
+      var mapped = super.map<UserProfile>(model || {});
 
       mapped.Id = model.Id;
       mapped.Firstname = model.Firstname;
@@ -82,7 +106,8 @@ module Cheetah.Models {
     public UserProfile: UserProfile;
 
     public static map(model: any): User {
-      var mapped = super.map<User>(model);
+      model = super.normalizeModel(model);
+      var mapped = super.map<User>(model || {});
 
       mapped.Id = model.Id;
       mapped.UserId = model.UserId;
@@ -102,7 +127,8 @@ module Cheetah.Models {
     public Password: string;
 
     public static map(model: any): UserViewModel {
-      var mapped = super.map<UserViewModel>(model);
+      model = super.normalizeModel(model);
+      var mapped = super.map<UserViewModel>(model || {});
 
       mapped.Info = User.map(model.Info);
       mapped.Password = model.Password;
@@ -119,7 +145,8 @@ module Cheetah.Models {
     public CreatedAt: Date;
 
     public static map(model: any): RefreshToken {
-      var mapped = super.map<RefreshToken>(model);
+      model = super.normalizeModel(model);
+      var mapped = super.map<RefreshToken>(model || {});
 
       mapped.Id = model.Id;
       mapped.Type = TokenTypeUtility.ToEnum(model.Type);
@@ -136,7 +163,8 @@ module Cheetah.Models {
     public RefreshToken: RefreshToken;
 
     public static map(model: any): UserInfoViewModel {
-      var mapped = super.map<UserInfoViewModel>(model);
+      model = super.normalizeModel(model);
+      var mapped = super.map<UserInfoViewModel>(model || {});
 
       mapped.User = User.map(model.User);
       mapped.RefreshToken = RefreshToken.map(model.RefreshToken);
@@ -146,11 +174,13 @@ module Cheetah.Models {
   }
 
   export class RefreshRequest extends Framework.BaseModel {
-    public ClientId: string;
-    public RefreshToken: RefreshToken;
+    constructor(public ClientId: string, public RefreshToken: RefreshToken) {
+      super();
+    }
 
     public static map(model: any): RefreshRequest {
-      var mapped  = super.map<RefreshRequest>(model);
+      model = super.normalizeModel(model);
+      var mapped  = super.map<RefreshRequest>(model || {});
 
       mapped.ClientId = model.ClientId;
       mapped.RefreshToken = RefreshToken.map(model.RefreshToken);
@@ -165,7 +195,8 @@ module Cheetah.Models {
     }
 
     public static map(model: any): LocalAuthRequest {
-      var mapped = super.map<LocalAuthRequest>(model);
+      model = super.normalizeModel(model);
+      var mapped = super.map<LocalAuthRequest>(model || {});
 
       mapped.Username = model.Username;
       mapped.Password = model.Password;
@@ -179,7 +210,8 @@ module Cheetah.Models {
     public RefreshToken: RefreshToken;
 
     public static map(model: any): AuthorizationGrant {
-      var mapped = super.map<AuthorizationGrant>(model);
+      model = super.normalizeModel(model);
+      var mapped = super.map<AuthorizationGrant>(model || {});
 
       mapped.ClientId = model.ClientId;
       mapped.RefreshToken = RefreshToken.map(model.RefreshToken);
@@ -192,7 +224,8 @@ module Cheetah.Models {
     public IsValid: boolean;
 
     public static map(model: any): AuthenticationResponse {
-      var mapped = super.map<AuthenticationResponse>(model);
+      model = super.normalizeModel(model);
+      var mapped = super.map<AuthenticationResponse>(model || {});
 
       mapped.IsValid = model.IsValid;
 

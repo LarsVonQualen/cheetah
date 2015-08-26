@@ -11,6 +11,29 @@ body {
   box-shadow: none;
   -webkit-box-shadow: none;
   border: 0;
+
+  &.panel-primary {
+    .panel-heading {
+      background-color: transparent;
+      color: @brand-primary;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+    }
+  }
+}
+
+.btn-hollow {
+  background-color: transparent;
+
+  &.btn-primary {
+    color: @brand-primary;
+
+    &:hover {
+      color: @textPrimaryColor;
+      background-color: @brand-primary;
+    }
+  }
 }
 
 .panel-flex {
@@ -26,4 +49,18 @@ body {
 
 .panel-title {
 
+}
+
+.notifications-wrapper {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .alert {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

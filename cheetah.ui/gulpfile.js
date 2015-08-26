@@ -8,7 +8,49 @@ var gulp = require('gulp'),
     wiredep = require('wiredep'),
     less = require('gulp-less'),
     GulpConfig = require("./config/gulp"),
-    debug = require("gulp-debug");
+    debug = require("gulp-debug"),
+    naturalSort = require("gulp-natural-sort"),
+    angularSort = require("gulp-angular-filesort"),
+    through = require("through");
+
+require('natural-compare-lite');
+
+
+function cheetahSort(order) {
+  var files = [];
+
+  function compare(a, b) {
+      if (a > b) return +1;
+      if (a < b) return -1;
+      return 0;
+  }
+
+  function onFile(file) {
+    files.push(file);
+  }
+
+  function onEnd() {
+    require('natural-compare-lite');
+    var _this = this;
+
+    files.sort(function(a, b) {
+      return compare(a.relative.toLowerCase(), b.relative.toLowerCase()); //String.naturalCompare(a.relative.toLowerCase(), b.relative.toLowerCase());
+    });
+
+    if(order === 'desc') {
+      files.reverse();
+    }
+
+    files.forEach(function(file) {
+      _this.emit('data', file);
+    });
+
+    return this.emit('end');
+  }
+
+  return through(onFile, onEnd);
+}
+
 
 var config = new GulpConfig();
 
@@ -89,8 +131,7 @@ gulp.task('index', ["vendor"], function () {
         }
       }
     }))
-    .pipe(inject(
-      gulp.src(config.typescript.all.js, { read: false }), {
+    .pipe(inject(gulp.src(config.typescript.all.js).pipe(cheetahSort("asc")), {
         addRootSlash: false,
         transform: function(filePath, file, i, length) {
           return '<script src="' + filePath.replace('', '') + '"></script>';
@@ -120,7 +161,7 @@ gulp.task("proxy", function () {
       return require('url').parse(req.url).path;
     }
   }));
-  
+
   app.use("/", express.static(__dirname));
 
   app.listen(config.proxy.port);
