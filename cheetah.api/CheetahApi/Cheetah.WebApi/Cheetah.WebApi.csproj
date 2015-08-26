@@ -211,7 +211,6 @@
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\Base\RepositoryController.cs" />
     <Compile Include="Controllers\Base\TwoKeyRepositoryController.cs" />
-    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />

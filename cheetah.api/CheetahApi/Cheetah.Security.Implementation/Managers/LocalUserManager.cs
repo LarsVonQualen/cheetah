@@ -62,7 +62,11 @@ namespace Cheetah.Security.Implementation.Managers
             if (!valid)
                 throw new InvalidCredentials();
 
-            var refreshToken = RefreshTokenStore.Find(user.UserId);
+            var refreshToken = RefreshTokenStore.Find(user.UserId) ?? RefreshTokenStore.Create(new RefreshToken()
+            {
+                UserId = user.UserId,
+                Token = TokenGenerator.Generate(user, correctHash)
+            });
 
             var grant = new AuthorizationGrant
             {
@@ -109,6 +113,12 @@ namespace Cheetah.Security.Implementation.Managers
             {
                 IsValid = Hasher.SlowEquals(existing.Token, accessToken)
             };          
-        }        
+        }
+
+        public void Revoke(User user)
+        {
+            AccessTokenStore.Revoke(user.UserId);
+            RefreshTokenStore.Revoke(user.UserId);
+        }
     }
 }

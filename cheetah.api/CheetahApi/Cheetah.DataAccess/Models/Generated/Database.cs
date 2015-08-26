@@ -255,62 +255,6 @@ namespace Cheetah.DataAccess.Models
 	}
 
     
-	[TableName("Users")]
-
-
-	[PrimaryKey("Id")]
-
-
-
-	[ExplicitColumns]
-    public partial class User : CheetahPocoModelDB.Record<User>  
-    {
-
-
-
-		[Column] public int Id { get; set; }
-
-
-
-
-
-		[Column] public Guid UserId { get; set; }
-
-
-
-
-
-		[Column] public string Username { get; set; }
-
-
-
-
-
-		[Column] public DateTime CreatedAt { get; set; }
-
-
-
-
-
-		[Column] public Guid ClientId { get; set; }
-
-
-
-
-
-		[Column] public string Email { get; set; }
-
-
-
-
-
-		[Column] public int? UserProfileId { get; set; }
-
-
-
-	}
-
-    
 	[TableName("UserProfiles")]
 
 
@@ -361,7 +305,7 @@ namespace Cheetah.DataAccess.Models
 	}
 
     
-	[TableName("BillingAddresses")]
+	[TableName("Users")]
 
 
 	[PrimaryKey("Id")]
@@ -369,7 +313,7 @@ namespace Cheetah.DataAccess.Models
 
 
 	[ExplicitColumns]
-    public partial class BillingAddress : CheetahPocoModelDB.Record<BillingAddress>  
+    public partial class User : CheetahPocoModelDB.Record<User>  
     {
 
 
@@ -377,194 +321,6 @@ namespace Cheetah.DataAccess.Models
 		[Column] public int Id { get; set; }
 
 
-
-
-
-		[Column] public string Street { get; set; }
-
-
-
-
-
-		[Column] public string City { get; set; }
-
-
-
-
-
-		[Column] public string ZipCode { get; set; }
-
-
-
-
-
-		[Column] public string CountryCode { get; set; }
-
-
-
-
-
-		[Column] public string Country { get; set; }
-
-
-
-
-
-		[Column] public DateTime CreatedAt { get; set; }
-
-
-
-
-
-		[Column] public Guid CreatedBy { get; set; }
-
-
-
-
-
-		[Column] public DateTime? LastUpdatedAt { get; set; }
-
-
-
-
-
-		[Column] public Guid? LastUpdatedBy { get; set; }
-
-
-
-
-
-		[Column] public int CorporationId { get; set; }
-
-
-
-	}
-
-    
-	[TableName("Corporations")]
-
-
-	[PrimaryKey("Id")]
-
-
-
-	[ExplicitColumns]
-    public partial class Corporation : CheetahPocoModelDB.Record<Corporation>  
-    {
-
-
-
-		[Column] public int Id { get; set; }
-
-
-
-
-
-		[Column] public string Name { get; set; }
-
-
-
-
-
-		[Column] public string Description { get; set; }
-
-
-
-
-
-		[Column] public DateTime CreatedAt { get; set; }
-
-
-
-
-
-		[Column] public Guid CreatedBy { get; set; }
-
-
-
-
-
-		[Column] public DateTime? LastUpdatedAt { get; set; }
-
-
-
-
-
-		[Column] public Guid? LastUpdatedBy { get; set; }
-
-
-
-
-
-		[Column] public int? BillingAddressId { get; set; }
-
-
-
-	}
-
-    
-	[TableName("Teams")]
-
-
-	[PrimaryKey("Id")]
-
-
-
-	[ExplicitColumns]
-    public partial class Team : CheetahPocoModelDB.Record<Team>  
-    {
-
-
-
-		[Column] public int Id { get; set; }
-
-
-
-
-
-		[Column] public string Name { get; set; }
-
-
-
-
-
-		[Column] public string Description { get; set; }
-
-
-
-
-
-		[Column] public DateTime CreatedAt { get; set; }
-
-
-
-
-
-		[Column] public Guid CreatedBy { get; set; }
-
-
-
-
-
-		[Column] public DateTime? LastUpdatedAt { get; set; }
-
-
-
-
-
-		[Column] public Guid? LastUpdatedBy { get; set; }
-
-
-
-	}
-
-    
-	[TableName("TeamUserRelation")]
-
-
-	[ExplicitColumns]
-    public partial class TeamUserRelation : CheetahPocoModelDB.Record<TeamUserRelation>  
-    {
 
 
 
@@ -574,7 +330,31 @@ namespace Cheetah.DataAccess.Models
 
 
 
-		[Column] public int TeamId { get; set; }
+		[Column] public string Username { get; set; }
+
+
+
+
+
+		[Column] public DateTime CreatedAt { get; set; }
+
+
+
+
+
+		[Column] public Guid ClientId { get; set; }
+
+
+
+
+
+		[Column] public string Email { get; set; }
+
+
+
+
+
+		[Column] public int? UserProfileId { get; set; }
 
 
 

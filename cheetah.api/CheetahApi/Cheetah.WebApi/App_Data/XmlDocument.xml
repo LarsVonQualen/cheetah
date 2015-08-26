@@ -621,7 +621,7 @@
             <param name="refreshRequest"></param>
             <returns></returns>
         </member>
-        <member name="M:Cheetah.WebApi.Controllers.AccountController.Authenticate(System.String)">
+        <member name="M:Cheetah.WebApi.Controllers.AccountController.Authenticate(Cheetah.DataAccess.Models.AccessToken)">
             <summary>
             Takes an AccessToken and verifies that it is valid
             </summary>
@@ -667,20 +667,6 @@
             Deletes a specific resource by the secondary key
             </summary>
             <param name="secondaryKey"></param>
-        </member>
-        <member name="M:Cheetah.WebApi.Controllers.TeamController.Users(System.Int32)">
-            <summary>
-            Fetches the users that are associated with the team
-            </summary>
-            <param name="teamId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Cheetah.WebApi.Controllers.UserController.Teams(System.Guid)">
-            <summary>
-            Fetches the teams that are associated with the user
-            </summary>
-            <param name="userId"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>

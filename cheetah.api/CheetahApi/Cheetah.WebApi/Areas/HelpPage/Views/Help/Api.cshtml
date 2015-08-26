@@ -7,12 +7,12 @@
     ViewBag.Title = description.HttpMethod.Method + " " + description.RelativePath;
 }
 
-<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+<link type="text/css" href="/api/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
 <div id="body" class="help-page">
     <section class="featured">
         <div class="content-wrapper">
             <p>
-                @Html.ActionLink("Help Page Home", "Index")
+                <a href="@($"/api/{Url.Action("Index")}")">Help Page Home</a>
             </p>
         </div>
     </section>

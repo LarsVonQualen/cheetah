@@ -52,15 +52,12 @@
     <Compile Include="Interfaces\Base\IRepository.cs" />
     <Compile Include="Interfaces\Base\ITwoKeyRepository.cs" />
     <Compile Include="Interfaces\IAccessTokenRepository.cs" />
-    <Compile Include="Interfaces\IBillingAddressRepository.cs" />
     <Compile Include="Interfaces\IPasswordHashRepository.cs" />
     <Compile Include="Interfaces\IRefreshTokenRepository.cs" />
-    <Compile Include="Interfaces\ITeamRepository.cs" />
     <Compile Include="Interfaces\ITokenRepository.cs" />
     <Compile Include="Interfaces\IUserProfileRepository.cs" />
     <Compile Include="Interfaces\IUserRepository.cs" />
     <Compile Include="Models\AccessToken.cs" />
-    <Compile Include="Models\Corporation.cs" />
     <Compile Include="Models\RefreshToken.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Repositories\AccessTokenRepository.cs" />
@@ -75,10 +72,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base\OwnableRepository.cs" />
     <Compile Include="Repositories\Base\TwoKeyRepository.cs" />
-    <Compile Include="Repositories\BillingAddressRepository.cs" />
     <Compile Include="Repositories\PasswordHashRepository.cs" />
     <Compile Include="Repositories\RefreshTokenRepository.cs" />
-    <Compile Include="Repositories\TeamRepository.cs" />
     <Compile Include="Repositories\UserProfileRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="DataAccessModule.cs" />

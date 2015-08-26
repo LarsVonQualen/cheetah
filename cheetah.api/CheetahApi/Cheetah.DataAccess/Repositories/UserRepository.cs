@@ -26,20 +26,6 @@ namespace Cheetah.DataAccess.Repositories
             return result;
         }
 
-        public ICollection<User> GetByTeam(int teamId)
-        {
-            using (var transaction = Database.GetTransaction())
-            {
-                var userIds = Database.Fetch<TeamUserRelation>("WHERE TeamId=@0", teamId);
-
-                var users = userIds.Select(relation => Get(relation.UserId)).ToList();
-
-                transaction.Complete();
-
-                return users;
-            }
-        }
-
         public override void BeforeInsert(User value)
         {
             base.BeforeInsert(value);
@@ -58,7 +44,7 @@ namespace Cheetah.DataAccess.Repositories
         {
             base.AfterGet(value);
 
-            if (value.UserProfileId.HasValue)
+            if (value != null && value.UserProfileId.HasValue)
                 value.UserProfile = UserProfileRepository.Get(value.UserProfileId.GetValueOrDefault());
         }
     }

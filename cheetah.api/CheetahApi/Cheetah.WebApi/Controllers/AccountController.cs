@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Http;
 using Cheetah.DataAccess.Interfaces;
 using Cheetah.DataAccess.Models;
+using Cheetah.Security.Implementation.Exceptions;
 using Cheetah.Security.Implementation.Models;
 using Cheetah.Security.Interfaces.Managers;
 using Cheetah.Security.Interfaces.Models;
@@ -74,7 +75,14 @@ namespace Cheetah.WebApi.Controllers
         [HttpPost]
         public IAuthorizationGrant Authorize(LocalAuthRequest authRequest)
         {
-            return LocalUserManager.Authorize(authRequest);
+            try
+            {
+                return LocalUserManager.Authorize(authRequest);
+            }
+            catch (InvalidCredentials)
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
         }
 
         /// <summary>
@@ -86,7 +94,14 @@ namespace Cheetah.WebApi.Controllers
         [HttpPost]
         public AccessToken Refresh(RefreshRequest refreshRequest)
         {
-            return LocalUserManager.Refresh(refreshRequest);
+            try
+            {
+                return LocalUserManager.Refresh(refreshRequest);
+            }
+            catch (InvalidRefreshToken)
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
         }
 
         /// <summary>
@@ -94,11 +109,38 @@ namespace Cheetah.WebApi.Controllers
         /// </summary>
         /// <param name="accessToken"></param>
         /// <returns></returns>
-        [Route("authenticate/{accessToken:alpha}")]
-        [HttpGet]
-        public IAuthenticationResponse Authenticate(string accessToken)
+        [Route("authenticate")]
+        [HttpPost]
+        public IAuthenticationResponse Authenticate(AccessToken accessToken)
         {
-            return LocalUserManager.Authenticate(accessToken);
+            try
+            {
+                return LocalUserManager.Authenticate(accessToken.Token);
+            }
+            catch (InvalidAccessToken)
+            {
+                throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            }
+            catch (AccessTokenExpired)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotAcceptable);
+            }
+        }
+
+        [Route("revoke/{userId:guid}")]
+        [HttpGet]
+        public void Revoke(Guid userId)
+        {
+            try
+            {
+                var user = LocalUserManager.UserStore.Find(userId);
+
+                LocalUserManager.Revoke(user);
+            }
+            catch (Exception)
+            {
+                throw new HttpResponseException(HttpStatusCode.InternalServerError);
+            }
         }
     }
 }

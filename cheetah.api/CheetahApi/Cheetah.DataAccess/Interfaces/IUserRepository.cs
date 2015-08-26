@@ -9,6 +9,5 @@ namespace Cheetah.DataAccess.Interfaces
     public interface IUserRepository : ITwoKeyRepository<int, Guid, User>
     {
         User Get(string username);
-        ICollection<User> GetByTeam(int teamId);
     }
 }

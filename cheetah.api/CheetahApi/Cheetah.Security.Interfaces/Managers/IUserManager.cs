@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Cheetah.Security.Interfaces.Models;
 using Cheetah.Security.Interfaces.Models.Base;
 using Cheetah.Security.Interfaces.Stores;
@@ -23,5 +24,6 @@ namespace Cheetah.Security.Interfaces.Managers
         IAuthorizationGrant Authorize(TTAuthRequest authRequest);
         TAccessToken Refresh(IRefreshRequest<TRefreshToken> refreshRequest);
         IAuthenticationResponse Authenticate(string accessToken);
+        void Revoke(TUser user);
     }
 }
